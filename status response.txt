@@ -1,0 +1,57 @@
+200 sukses
+201 berhasil dibuat
+
+303 redirect
+
+400 bad request
+401 not authorized
+403 forbidden
+
+500 server error
+
+endpoint untuk aplikasi
+- GET /movies, untuk mengambil data dari movies/list movies
+- GET /movies/:id, untuk mengambil data detail dari movies
+- GET /genre/:name, untuk menampilkan movies dengan genre yang dikirimkan melalui params
+- GET /cinemas, untuk mengambil list dari cinema/bioskop
+- GET /cinemas/:id, untuk mengambil detil dari cinema/bioskop
+
+- GET /admin/movies
+- GET /admin/movies:id
+- GET /admin/genre
+- GET /admin/genre:id
+- GET /admin/cinemas
+- GET /admin/cinemas:id
+
+- POST /admin/movies                   /
+- POST /admin/movies:id
+- POST /admin/genre
+- POST /admin/genre:id
+- POST /admin/cinemas                  /
+- POST /admin/cinemas:id
+
+- PUT /admin/movies
+- PUT /admin/movies:id
+- PUT /admin/genre
+- PUT /admin/genre:id
+- PUT /admin/cinemas
+- PUT /admin/cinemas:id
+
+- DELETE /admin/movies
+- DELETE /admin/movies:id
+- DELETE /admin/genre
+- DELETE /admin/genre:id
+- DELETE /admin/cinemas
+- DELETE /admin/cinemas:id
+
+- PATCH /admin/movies
+- PATCH /admin/movies:id
+- PATCH /admin/genre
+- PATCH /admin/genre:id
+- PATCH /admin/cinemas
+- PATCH /admin/cinemas:id
+
+query berarti harus memasukkan key dan value
+
+/?key=value
+/params
