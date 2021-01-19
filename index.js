@@ -13,9 +13,9 @@ app.use(morgan('dev'))
 app.use(cors('*'))
 
 app.use('/movies', require('./src/routes/movies'))
-app.use('/admin/movies', require('./src/routes/adminMovies'))
+// app.use('/admin/movies', require('./src/routes/adminMovies'))
 app.use('/cinemas', require('./src/routes/cinemas'))
-app.use('/admin/cinemas', require('./src/routes/adminCinemas'))
+// app.use('/admin/cinemas', require('./src/routes/adminCinemas'))
 
 app.get('/', (request, response) => {
   return response.json({
