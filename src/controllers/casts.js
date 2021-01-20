@@ -1,91 +1,81 @@
-const cinemasModel = require('../models/cinemas')
+const castsModel = require('../models/casts')
 
-exports.getAllCinemas = (req, res) => {
+exports.getAllCasts = (req, res) => {
     const data = req.body
-    cinemasModel.getAllCinemas((results) => {
+    castsModel.getAllCasts((results) => {
         return res.json({
             success: true,
-            message: 'List Cinemas',
+            message: 'List Casts',
             results
         })
     })
 }
 
-// exports.getAllCinemas = (req, res) => {
-//     const data = req.body
-//     const results = await cinemasModel.getAllCinemas()
-//         return res.json({
-//             success: true,
-//             message: 'List Cinemas',
-//             results
-//     })
-// }
-
-exports.getCinemasById = (req, res) => {
+exports.getCastsById = (req, res) => {
     const id = req.params.id
-    cinemasModel.getCinemasById(id, (results) => {
+    castsModel.getCastsById(id, (results) => {
         if (results.length > 0) {
             return res.json({
                 success: true,
-                message: 'Detail of cinemas',
+                message: 'Detail of casts',
                 results: results[0]
             })            
         }
         else {
             return res.status(404).json({
                 success: false,
-                message: 'Failed to get detail of Cinemas'
+                message: 'Failed to get detail of Casts'
             })
         }
     })
 }
 
-exports.createCinemas = (req, res) => {
+exports.createCasts = (req, res) => {
     const data = req.body
-    cinemasModel.createCinemas(data, (results) => {
+    castsModel.createCasts(data, (results) => {
         if (results.affectedRows > 0) {
-            cinemasModel.getCinemasById(results.insertId, (finalResult) => {
+            castsModel.getCastsById(results.insertId, (finalResult) => {
                 if (finalResult.length > 0) {
                     return res.status(201).json({
                         success: true,
-                        message: 'Details of Cinemas',
+                        message: 'Details of Casts',
                         results: finalResult[0]
                     })
                 }
                 return res.status(400).json({
                     success: false,
-                    message: 'Failed to create Cinemas'
+                    message: 'Failed to create Casts'
                 })
             })
         }
     })
 }
 
-exports.deleteCinemas = (req, res) => {
+exports.deleteCasts = (req, res) => {
     const id = req.params.id
-    cinemasModel.deleteCinemas(id, (results) => {
+    castsModel.deleteCasts(id, (results) => {
         if (results.affectedRows > 0) {
             return res.json({
                 success: true,
-                message: 'Cinemas deleted successfully',
+                message: 'Casts deleted successfully',
             })
         }
         return res.status(404).json({
             success: false,
-            message: 'Failed to delete Cinemas'
+            message: 'Failed to delete Casts'
         })
     })
 }
 
-exports.updateCinemas = (req, res) => {
+exports.updateCasts = (req, res) => {
     const { id } = req.params
     const data = req.body
-    cinemasModel.getCinemasById(id, initialResult => {
+    castsModel.getCastsById(id, initialResult => {
         if (initialResult.length > 0) {
-            cinemasModel.updateCinemas(id, data, results => {
+            castsModel.updateCasts(id, data, results => {
                 return res.json({
                     success: true,
-                    message: 'Update cinemas success',
+                    message: 'Update casts success',
                     results: {
                         ...initialResult[0],
                         ...data
@@ -95,7 +85,7 @@ exports.updateCinemas = (req, res) => {
         } else {
             return res.status(404).json({
                 success: false,
-                message: 'Failed to update cinemas'
+                message: 'Failed to update casts'
             })
         }
     })
