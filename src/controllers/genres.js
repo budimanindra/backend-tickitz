@@ -19,7 +19,7 @@ exports.getGenreById = (req, res) => {
                 success: true,
                 message: 'Detail of genre',
                 results: results[0]
-            })            
+            })
         }
         else {
             return res.status(404).json({

@@ -45,6 +45,17 @@ exports.listMovies = (req, res) => {
     })
 }
 
+exports.getAllMovie = (req, res) => {
+    const data = req.body
+    genreModel.getAllMovie((results) => {
+        return res.json({
+            success: true,
+            message: 'List Movie',
+            results
+        })
+    })
+}
+
 exports.detailMovies = (req, res) => {
     const { id } = req.params
     movieModel.getMovieById(id, results => {

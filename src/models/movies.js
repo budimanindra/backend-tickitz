@@ -17,12 +17,10 @@
 const db = require('../helpers/db')
 
 exports.createMovies = (data = {}, cb) => {
-  const query = db.query(`
+    const query = db.query(`
   INSERT INTO movies
-  (name, genre, description, releaseDate)
   (${Object.keys(data).join()})
   VALUES
-
   (${Object.values(data).map(item => `"${item}"`).join(',')})
   `, (err, res, field) => {
         if (err) throw err
@@ -30,12 +28,14 @@ exports.createMovies = (data = {}, cb) => {
         cb(res)
     })
     console.log(query.sql)
-} 
+}
 
-exports.getAllMovies = (cb) => {
-    const query = db.query('SELECT * FROM movies', (err, res, field) => {
+exports.getAllMovie = (cb) => {
+    const query = db.query(`
+    SELECT * FROM genres
+  `, (err, res, field) => {
         if (err) throw err
-        console.log(field)
+        // console.log(field)
         cb(res)
     })
     console.log(query.sql)
@@ -43,11 +43,11 @@ exports.getAllMovies = (cb) => {
 
 exports.getMoviesByCondition = (cond, cb) => {
     const query = db.query(`
-    SELECT * FROM
-    movies WHERE name LIKE "%${cond.search}%"
-    ORDER BY ${cond.sort} ${cond.order}
-    LIMIT ${cond.dataLimit} OFFSET ${cond.offset}
-    `, (err, res, field) => {
+      SELECT * FROM
+      movies WHERE name LIKE "%${cond.search}%"
+      ORDER BY ${cond.sort} ${cond.order}
+      LIMIT ${cond.dataLimit} OFFSET ${cond.offset}
+      `, (err, res, field) => {
         if (err) throw err
         // console.log(field)
         cb(res)

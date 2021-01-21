@@ -11,16 +11,6 @@ exports.getAllCinemas = (req, res) => {
     })
 }
 
-// exports.getAllCinemas = (req, res) => {
-//     const data = req.body
-//     const results = await cinemasModel.getAllCinemas()
-//         return res.json({
-//             success: true,
-//             message: 'List Cinemas',
-//             results
-//     })
-// }
-
 exports.getCinemasById = (req, res) => {
     const id = req.params.id
     cinemasModel.getCinemasById(id, (results) => {
