@@ -61,7 +61,3 @@ exports.updateCinemas = (id, data, cb) => {
     })
     console.log(query.sql)
 }
-
-// key = [id, name, apalahitu]
-// value = [1, kuda, apalahitunilai]
-// key.map((item, index) => `${item}="${value[index]}"` ==> `id="1"`, `name="kuda"` 
