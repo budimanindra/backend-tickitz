@@ -1,10 +1,10 @@
-const movieController = require('../controllers/movies')
+const genreController = require('../controllers/genres')
 const routes = require('express').Router()
 
-routes.get('/', movieController.listMovies)
-routes.get('/:id', movieController.getMoviesById)
-routes.post('/', movieController.createMovie)
-routes.delete('/:id', movieController.deleteMovieById)
-routes.put('/:id', movieController.updateMovieById)
+routes.get('/', genreController.listGenres)
+routes.get('/:id', genreController.getGenreById)
+routes.post('/', genreController.createGenre)
+routes.delete('/:id', genreController.deleteGenre)
+routes.put('/:id', genreController.updateGenre)
 
 module.exports = routes

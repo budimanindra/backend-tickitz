@@ -1,15 +1,16 @@
 const genreModel = require('../models/genres')
 
-exports.getAllGenre = (req, res) => {
-    const data = req.body
-    genreModel.getAllGenre((results) => {
-        return res.json({
-            success: true,
-            message: 'List Genre',
-            results
-        })
-    })
-}
+// list all genre without pagination
+// exports.getAllGenre = (req, res) => {
+//     const data = req.body
+//     genreModel.getAllGenre((results) => {
+//         return res.json({
+//             success: true,
+//             message: 'List Genre',
+//             results
+//         })
+//     })
+// }
 
 exports.getGenreById = (req, res) => {
     const id = req.params.id
@@ -90,3 +91,27 @@ exports.updateGenre = (req, res) => {
         }
     })
 }
+
+
+
+// 
+
+// list all genre with pagination
+exports.listGenres = (req, res) => {
+    const cond = req.query
+    cond.search = cond.search || ''
+    cond.page = Number(cond.page) || 1
+    cond.limit = Number(cond.limit) || 5
+    cond.dataLimit = cond.limit * cond.page
+    cond.offset = (cond.page - 1) * cond.limit
+    cond.sort = cond.sort || 'id'
+    cond.order = cond.order || 'ASC'
+  
+    genreModel.getGenresByCondition(cond, results => {
+      return res.json({
+        success: true,
+        message: 'List of all Genres',
+        results
+      })
+    })
+  }

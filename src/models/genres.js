@@ -1,15 +1,15 @@
 const db = require('../helpers/db')
 
-exports.getAllGenre = (cb) => {
-    const query = db.query(`
-    SELECT * FROM genres
-  `, (err, res, field) => {
-        if (err) throw err
-        // console.log(field)
-        cb(res)
-    })
-    console.log(query.sql)
-}
+// exports.getAllGenre = (cb) => {
+//     const query = db.query(`
+//     SELECT * FROM genres
+//   `, (err, res, field) => {
+//         if (err) throw err
+//         // console.log(field)
+//         cb(res)
+//     })
+//     console.log(query.sql)
+// }
 
 exports.getGenreById = (id, cb) => {
     const query = db.query(`
@@ -75,4 +75,18 @@ exports.checkGenresAsync = (data = [], cb) => {
       })
       console.log(query.sql)
     })
+  }
+
+  exports.getGenresByCondition = (cond, cb) => {
+    const query = db.query(`
+      SELECT * FROM
+      genres WHERE name LIKE "%${cond.search}%"
+      ORDER BY ${cond.sort} ${cond.order}
+      LIMIT ${cond.dataLimit} OFFSET ${cond.offset}
+      `, (err, res, field) => {
+      if (err) throw err
+      // console.log(field)
+      cb(res)
+    })
+    console.log(query.sql)
   }
