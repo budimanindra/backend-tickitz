@@ -25,18 +25,27 @@ This is non-optimized minimal backend app with MySQL and node. This app designed
   ```
 
 ## API SPECS
-- GET http://localhost:PORT/movies Route for get movies list
-- GET http://localhost:PORT/cinemas Route for get cinemas list
-- GET http://localhost:PORT/genres Route for get genres list
-- GET http://localhost:PORT/movies/:id Route for get movie details by id
-- GET http://localhost:PORT/cinemas/:id Route for get cinema details by id
-- GET http://localhost:PORT/genres/:id Route for get genre details by id
-- POST http://localhost:PORT/movies Route for add movie
-- POST http://localhost:PORT/cinemas Route for add cinema
-- POST http://localhost:PORT/genres Route for add genre
-- PUT http://localhost:PORT/movies/:id Route for edit movie details by id
-- PUT http://localhost:PORT/cinemas/:id Route for edit cinema details by id
-- PUT http://localhost:PORT/genres/:id Route for edit genre details by id
-- DELETE http://localhost:PORT/movies/:id Route for delete movie by id
-- DELETE http://localhost:PORT/cinemas/:id Route for delete cinema by id
-- DELETE http://localhost:PORT/genres/:id Route for delete genre by id
+- GET http://localhost:PORT/movies Route for user to get movies list
+- GET http://localhost:PORT/cinemas Route for for user to get cinemas list
+- GET http://localhost:PORT/genres Route for  for user to get genres list
+
+- GET http://localhost:PORT/movies/:id Route for user to get movie details by id
+- GET http://localhost:PORT/cinemas/:id Route for user to get cinema details by id
+- GET http://localhost:PORT/genres/:id Route for user to get genre details by id
+
+- GET http://localhost:PORT/admin/movies Route for admin to get movies list
+- GET http://localhost:PORT/admin/movies/:id Route for admin to get movie details by id
+- GET http://localhost:PORT/admin/genres Route for admin to get genres list
+- GET http://localhost:PORT/admin/genres/:id Route for admin to get genre details by id
+
+- POST http://localhost:PORT/admin/movies Route for admin to add movie
+- POST http://localhost:PORT/cinemas Route for user to add cinema
+- POST http://localhost:PORT/admin/genres Route for admin to add genre
+
+- PUT http://localhost:PORT/admin/movies/:id Route for admin to edit movie details by id
+- PUT http://localhost:PORT/cinemas/:id Route for user to edit cinema details by id
+- PUT http://localhost:PORT/admin/genres/:id Route for admin to edit genre details by id
+
+- DELETE http://localhost:PORT/admin/movies/:id Route for admin to delete movie by id
+- DELETE http://localhost:PORT/cinemas/:id Route for user to delete cinema by id
+- DELETE http://localhost:PORT/admin/genres/:id Route for admin to delete genre by id
