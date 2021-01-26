@@ -12,6 +12,7 @@ app.use(bodyParser.urlencoded({ extended: false }))
 app.use(morgan('dev'))
 app.use(cors('*'))
 
+app.use('/auth', require('./src/routes/auth'))
 app.use('/movies', require('./src/routes/movies'))
 app.use('/admin/movies', require('./src/routes/adminMovies'))
 // app.use('/cinemas', require('./src/routes/cinemas'))
