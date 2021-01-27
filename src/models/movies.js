@@ -75,7 +75,6 @@ exports.getMoviesByCondition = (cond, cb) => {
     LIMIT ${cond.dataLimit} OFFSET ${cond.offset}
     `, (err, res, field) => {
     if (err) throw err
-    // console.log(field)
     cb(res)
   })
   console.log(query.sql)
@@ -99,7 +98,7 @@ exports.createMoviesAsync = (data = {}, cb) => {
 exports.getMovieByIdWithGenreAsync = (id) => {
   return new Promise((resolve, reject) => {
     const query = db.query(`
-    SELECT m.id, m.name, m.image, m.releaseDate, m.duration, m.directedBy, m.synopsis, g.name as genreName
+    SELECT m.id, m.name, m.image, m.releaseDate, m.endDate, m.duration, m.directedBy, m.synopsis, g.name as genreName
     FROM movies m
     INNER JOIN movie_genres mg ON m.id=mg.idMovie
     INNER JOIN genres g ON g.id=mg.idGenre

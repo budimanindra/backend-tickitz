@@ -1,63 +1,114 @@
 const db = require('../helpers/db')
 
-exports.getAllCinemas = (cb) => {
-    const query = db.query(`
-    SELECT * FROM cinemas
-  `, (err, res, field) => {
-        if (err) throw err
-        // console.log(field)
-        cb(res)
-    })
-    console.log(query.sql)
-}
+// tanpa pagination
+// exports.getAllCinemas = (cb) => {
+//     const query = db.query(`
+//     SELECT * FROM cinemas
+//   `, (err, res, field) => {
+//         if (err) throw err
+//         // console.log(field)
+//         cb(res)
+//     })
+//     console.log(query.sql)
+// }
 
-exports.getCinemasById = (id, cb) => {
-    const query = db.query(`
+exports.getCinemaById = (id, cb) => {
+  const query = db.query(`
     SELECT * FROM cinemas WHERE id=${id}
   `, (err, res, field) => {
-        if (err) throw err
-        // console.log(field)
-        cb(res)
-    })
-    console.log(query.sql)
+    if (err) throw err
+    // console.log(field)
+    cb(res)
+  })
+  console.log(query.sql)
 }
 
-exports.createCinemas = (data = {}, cb) => {
-    const query = db.query(`
+exports.createCinema = (data = {}, cb) => {
+  const query = db.query(`
   INSERT INTO cinemas
   (${Object.keys(data).join()})
   VALUES
   (${Object.values(data).map(item => `"${item}"`).join(',')})
   `, (err, res, field) => {
-        if (err) throw err
-        console.log(field)
-        cb(res)
-    })
-    console.log(query.sql)
+    if (err) throw err
+    console.log(field)
+    cb(res)
+  })
+  console.log(query.sql)
 }
 
-exports.deleteCinemas = (id, cb) => {
-    const query = db.query(`
+exports.deleteCinemaById = (id, cb) => {
+  const query = db.query(`
   DELETE FROM cinemas
   WHERE id = ${id}
   `, (err, res, field) => {
-        if (err) throw err
-        console.log(field)
-        cb(res)
-    })
-    console.log(query.sql)
+    if (err) throw err
+    console.log(field)
+    cb(res)
+  })
+  console.log(query.sql)
 }
 
-exports.updateCinemas = (id, data, cb) => {
-    const key = Object.keys(data)
-    const value = Object.values(data)
-    const query = db.query(`
+exports.updateCinemaById = (id, data, cb) => {
+  const key = Object.keys(data)
+  const value = Object.values(data)
+  const query = db.query(`
     UPDATE cinemas
     SET ${key.map((item, index) => `${item}="${value[index]}"`)}
     WHERE id=${id}
   `, (err, res, field) => {
-        if (err) throw err
-        cb(res)
+    if (err) throw err
+    cb(res)
+  })
+  console.log(query.sql)
+}
+
+
+
+// 
+
+exports.getCinemasByCondition = (cond, cb) => {
+  const query = db.query(`
+    SELECT * FROM
+    cinemas WHERE name LIKE "%${cond.search}%"
+    ORDER BY ${cond.sort} ${cond.order}
+    LIMIT ${cond.dataLimit} OFFSET ${cond.offset}
+    `, (err, res, field) => {
+    if (err) throw err
+    cb(res)
+  })
+  console.log(query.sql)
+}
+
+exports.createCinemasAsync = (data = {}, cb) => {
+  return new Promise((resolve, reject) => {
+    const query = db.query(`
+    INSERT INTO cinemas
+    (${Object.keys(data).join()})
+    VALUES
+    (${Object.values(data).map(item => `"${item}"`).join(',')})
+    `, (err, res, field) => {
+      if (err) reject(err)
+      resolve(res)
     })
     console.log(query.sql)
+  })
+}
+
+exports.getAllCinemasByMovieIdAsync = (id, city, date) => {
+  return new Promise((resolve, reject) => {
+    const query = db.query(`
+    SELECT c.id, c.name, c.image, c.address, c.city, c.priceWeekend, c.priceWeekdays, st.showTimes
+    FROM cinemas c
+    INNER JOIN show_times_cinemas stc ON c.id = stc.idCinemas
+    INNER JOIN show_times st ON st.id = stc.idShowTimes
+    INNER JOIN cinemas_movies cm ON cm.idCinemas = c.id
+    INNER JOIN movies m ON m.id = cm.idMovies
+    WHERE m.id=${id} AND c.city='${city}' AND m.releaseDate <= '${date}' AND m.endDate >= '${date}'
+  `, (err, res, field) => {
+      if (err) reject(err)
+      resolve(res)
+    })
+    console.log(query.sql)
+  })
 }

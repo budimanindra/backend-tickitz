@@ -16,7 +16,7 @@ const upload = require('../helpers/upload').single('image')
 //     })
 // }
 
-exports.getMoviesById = (req, res) => {
+exports.getMoviesById = async (req, res) => {
   const id = req.params.id
   movieModel.getMovieById(id, (results) => {
     if (results.length > 0) {
@@ -168,6 +168,7 @@ exports.createMovie = (req, res) => {
       name: data.name,
       image: (req.file && req.file.path) || null,
       releaseDate: data.releaseDate,
+      endDate: data.endDate,
       duration: data.duration,
       directedBy: data.directedBy,
       synopsis: data.synopsis
@@ -187,6 +188,7 @@ exports.createMovie = (req, res) => {
             name: movies[0].name,
             image: movies[0].image,
             releaseDate: movies[0].releaseDate,
+            endDate: movies[0].endDate,
             duration: movies[0].duration,
             directedBy: movies[0].directedBy,
             synopsis: movies[0].synopsis,

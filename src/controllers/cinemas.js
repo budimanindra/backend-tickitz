@@ -90,3 +90,13 @@ exports.updateCinemas = (req, res) => {
         }
     })
 }
+
+exports.getAllCinemasByMovieIdAsync = async (req, res) => {
+    const {id,city,date} = req.query
+    const cinemas = await cinemasModel.getAllCinemasByMovieIdAsync(id,city,date)
+    return res.json({
+      success: true,
+      message: 'cinemas list',
+      results: cinemas
+    })
+  }
