@@ -16,24 +16,116 @@ const upload = require('../helpers/upload').single('image')
 //     })
 // }
 
+// exports.getMoviesById = async (req, res) => {
+//   const id = req.params.id
+//   movieModel.getMovieById(id, (results) => {
+//     if (results.length > 0) {
+//       return res.json({
+//         success: true,
+//         message: 'Detail of movies',
+//         results: {
+//           id: results[0].id,
+//           name: results[0].name,
+//           image: results[0].image,
+//           releaseDate: results[0].releaseDate,
+//           endDate: results[0].endDate,
+//           duration: results[0].duration,
+//           directedBy: results[0].directedBy,
+//           synopsis: results[0].synopsis,
+//           genreName: results.map(({ genreName }) => genreName)
+//           castName: results.map(({ castName }) => castName)
+//         }
+//       })
+//     }
+//     else {
+//       return res.status(404).json({
+//         success: false,
+//         message: 'Failed to get detail of Movies'
+//       })
+//     }
+//   })
+// }
+
 exports.getMoviesById = async (req, res) => {
-  const id = req.params.id
-  movieModel.getMovieById(id, (results) => {
-    if (results.length > 0) {
-      return res.json({
-        success: true,
-        message: 'Detail of movies',
-        results: results[0]
+  const { id } = req.params
+  const results = await movieModel.getMovieById(id)
+  if (results.length > 0) {
+    const arr = results.reduce((accumulator, item, _index, source)=> {
+      const keys = Object.keys(source[0])
+      const multiData = ['genreName', 'castName']
+      keys.forEach(key=>{
+          if(multiData.indexOf(key)===-1) accumulator[key] = item[key]
       })
-    }
-    else {
-      return res.status(404).json({
-        success: false,
-        message: 'Failed to get detail of Movies'
+      multiData.forEach(col => {
+          accumulator[col] = accumulator[col] || [];
+          if(accumulator[col].indexOf(item[col])===-1) accumulator[col].push(item[col])
       })
-    }
+      return accumulator
+    },{})
+
+    return res.json({
+      success: true,
+      message: 'Details of Movie',
+      results: {
+        // id: results[0].id,
+        // name: results[0].name,
+        // image: results[0].image,
+        // releaseDate: results[0].releaseDate,
+        // endDate: results[0].endDate,
+        // duration: results[0].duration,
+        // directedBy: results[0].directedBy,
+        // synopsis: results[0].synopsis,
+        // genreName: results.map(({ genreName }) => genreName),
+        // castName: results.map(({ castName }) => castName)
+
+        // untuk mengambil isi per arr
+        // id: arr.id,
+        // name: arr.name
+        // ...arr
+        id: arr.id,
+        name: arr.name,
+        image: arr.image,
+        releaseDate: arr.releaseDate,
+        endDate: arr.endDate,
+        duration: arr.duration,
+        directedBy: arr.directedBy,
+        synopsis: arr.synopsis,
+        genreName: arr.genreName.join(', '),
+        castName: arr.castName.join(', ')
+      }
+    })
+  }
+  return res.status(400).json({
+    success: false,
+    message: 'Movies not exists'
   })
 }
+
+
+// const data = [
+//   {id: 49, name: 'Annabelle', image: null, releaseDate: '2021-01-01', endDate: '2021-01-01', duration: '02:00:00', director: 'John', synopsis: 'Lorem ipsum', genreName: 'Drama', castName: 'Vin'},
+//   {id: 49, name: 'Annabelle', image: null, releaseDate: '2021-01-01', endDate: '2021-01-01', duration: '02:00:00', director: 'John', synopsis: 'Lorem ipsum', genreName: 'Horror', castName: 'Vin'},
+//   {id: 49, name: 'Annabelle', image: null, releaseDate: '2021-01-01', endDate: '2021-01-01', duration: '02:00:00', director: 'John', synopsis: 'Lorem ipsum', genreName: 'Sci-Fi', castName: 'Vin'},
+//   {id: 49, name: 'Annabelle', image: null, releaseDate: '2021-01-01', endDate: '2021-01-01', duration: '02:00:00', director: 'John', synopsis: 'Lorem ipsum', genreName: 'Drama', castName: 'Derek'},
+//   {id: 49, name: 'Annabelle', image: null, releaseDate: '2021-01-01', endDate: '2021-01-01', duration: '02:00:00', director: 'John', synopsis: 'Lorem ipsum', genreName: 'Horror', castName: 'Derek'},
+//   {id: 49, name: 'Annabelle', image: null, releaseDate: '2021-01-01', endDate: '2021-01-01', duration: '02:00:00', director: 'John', synopsis: 'Lorem ipsum', genreName: 'Sci-Fi', castName: 'Derek'},
+// ]
+
+// const arr = data.reduce((accumulator, item, _index, source)=> {
+//   const keys = Object.keys(source[0])
+//   const multiData = ['genreName', 'castName']
+//   keys.forEach(key=>{
+//       if(multiData.indexOf(key)===-1) accumulator[key] = item[key]
+//   })
+//   multiData.forEach(col => {
+//       accumulator[col] = accumulator[col] || [];
+//       if(accumulator[col].indexOf(item[col])===-1) accumulator[col].push(item[col])
+//   })
+//   return accumulator
+// },{})
+
+// console.log(arr)
+
 
 // create movie without relation between genres and movies
 // exports.createMovie = (req, res) => {
@@ -215,11 +307,90 @@ exports.getMoviesNowShowing = async (req, res) => {
   })
 }
 
-exports.getMoviesUpcoming = async (req, res) => {
-  const movies = await movieModel.getMoviesUpcoming()
-  return res.json({
-    success: true,
-    message: 'Upcoming Movie List',
-    results: movies
+// exports.getMoviesUpcoming = async (req, res) => {
+//   const movies = await movieModel.getMoviesUpcoming()
+//   return res.json({
+//     success: true,
+//     message: 'Upcoming Movie List',
+//     results: movies
+//   })
+// }
+
+// exports.getMoviesUpcoming = async (req, res) => {
+//   const results = await movieModel.getMoviesUpcoming()
+//   if (results.length > 0) {
+//     const arr = results.reduce((accumulator, item, _index, source)=> {
+//       const keys = Object.keys(source[0])
+//       const multiData = ['genreName']
+//       keys.forEach(key=>{
+//           if(multiData.indexOf(key)===-1) accumulator[key] = item[key]
+//       })
+//       multiData.forEach(col => {
+//           accumulator[col] = accumulator[col] || [];
+//           if(accumulator[col].indexOf(item[col])===-1) accumulator[col].push(item[col])
+//       })
+//       return accumulator
+//     },{})
+
+//     return res.json({
+//       success: true,
+//       message: 'Details of Movies',
+//       results: 
+//       {
+//         id: arr.id,
+//         name: arr.name,
+//         image: arr.image,
+//         releaseDate: arr.releaseDate,
+//         genreName: arr.genreName.join(', '),
+//       }
+//       // results
+//     })
+//   }
+//   return res.status(400).json({
+//     success: false,
+//     message: 'Movies not exists'
+//   })
+// }
+
+exports.getUpcomingMovies = async (req, res) => {
+  const results = await movieModel.getUpcomingMovies()
+  if (results.length > 0) {
+    const listMovie = []
+    const genres = {}
+    results.forEach(item => {
+      if(!(`${item.id}` in genres)) {
+        genres[`${item.id}`] = [item.genreName]
+        listMovie.push({
+          id: item.id,
+          name: item.name,
+          image: item.image,
+          releaseDate: item.releaseDate,
+          genreName: genres[`${item.id}`]
+        })
+      } else {
+        genres[`${item.id}`].push(item.genreName)
+      }
+    });
+
+    listMovie.map(item => {
+      item.genreName = item.genreName.join(', ')
+    })
+
+    return res.json({
+      success: true,
+      message: 'Details of Upcoming Movies',
+      results: listMovie
+      // results: {
+      //   id: arr.id,
+      //   name: arr.name,
+      //   image: arr.image,
+      //   releaseDate: arr.releaseDate,
+      //   genreName: arr.genreName.join(', '),
+      // }
+    })
+  }
+  return res.status(400).json({
+    success: false,
+    message: 'Movies not exists'
   })
 }

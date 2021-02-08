@@ -20,6 +20,8 @@ app.use('/cinemas', require('./src/routes/cinemas'))
 app.use('/genres', require('./src/routes/genres'))
 app.use('/admin/genres', require('./src/routes/adminGenres.js'))
 app.use('/casts', require('./src/routes/casts'))
+app.use('/cities', require('./src/routes/cities'))
+
 
 
 app.get('/', (request, response) => {

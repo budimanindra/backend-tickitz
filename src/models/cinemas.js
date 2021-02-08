@@ -98,13 +98,15 @@ exports.createCinemasAsync = (data = {}, cb) => {
 exports.getAllCinemasByMovieIdAsync = (id, city, date) => {
   return new Promise((resolve, reject) => {
     const query = db.query(`
-    SELECT c.id, c.name, c.image, c.address, c.city, c.priceWeekend, c.priceWeekdays, st.showTimes
+    SELECT c.id, c.name, c.image, c.address, ci.name, c.priceWeekend, c.priceWeekdays, st.showTimes
     FROM cinemas c
     INNER JOIN show_times_cinemas stc ON c.id = stc.idCinemas
     INNER JOIN show_times st ON st.id = stc.idShowTimes
     INNER JOIN cinemas_movies cm ON cm.idCinemas = c.id
     INNER JOIN movies m ON m.id = cm.idMovies
-    WHERE m.id=${id} AND c.city='${city}' AND m.releaseDate <= '${date}' AND m.endDate >= '${date}'
+    INNER JOIN cities_cinemas cc ON c.id = cc.idCinemas
+    INNER JOIN cities ci ON cc.idCities = ci.id
+    WHERE m.id=${id} AND ci.name='${city}' AND m.releaseDate <= '${date}' AND m.endDate >= '${date}'
   `, (err, res, field) => {
       if (err) reject(err)
       resolve(res)
