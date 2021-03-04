@@ -2,7 +2,7 @@ const userModel = require('../models/users')
 const bcrypt = require('bcrypt')
 const jwt = require('jsonwebtoken')
 const { APP_KEY } = process.env
-const resp = require('../helpers/response')
+const response = require('../helpers/response')
 
 exports.login = async (req, res) => {
   const { email, password } = req.body
@@ -51,5 +51,48 @@ exports.register = async (req, res) => {
       success: false,
       message: 'Register Failed, email already exists'
     })
+  }
+}
+
+exports.updateUserDetails = async (req, res) => {
+  
+  var {id} = req.userData   
+  console.log(id)
+  
+  const {
+    email, password, fullName, phoneNumber
+  } = req.body
+
+  try {
+    const row = await userModel.getUsersByIdAsync( id )
+    const user = row[0]
+    if (!user) {
+      return response(res, 400, false, 'Failed to edit profile, unknown user id')
+    } else {
+      const salt = await bcrypt.genSalt()
+    const encryptedPassword = await bcrypt.hash(password, salt)
+      const editedUser = {
+        ...user,
+        email: email ? email : user.email,
+        password: password ? encryptedPassword : user.password,
+        fullName: fullName ? fullName : user.fullName,
+        phoneNumber: phoneNumber ? phoneNumber : user.phoneNumber
+      }
+      try {
+        const updateProfile = await userModel.updateUserDetails(editedUser, id)
+        if (!updateProfile) {
+          return response(res, 400, false, 'Failed to edit profile')
+        } else {
+          return response(res, 200, true, 'Successfully to edit profile', {
+            ...editedUser,
+            password: 'secret'
+          })
+        }
+      } catch (err) {
+        return response(res, 500, false, 'Failed to edit profile, server error')
+      }
+    }
+  } catch (err) {
+    return response(res, 500, false, 'Failed to edit profile, server error')
   }
 }
