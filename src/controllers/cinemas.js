@@ -13,7 +13,7 @@ exports.getAllCinemas = (req, res) => {
 
 exports.getCinemasById = (req, res) => {
     const id = req.params.id
-    cinemasModel.getCinemasById(id, (results) => {
+    cinemasModel.getCinemaById(id, (results) => {
         if (results.length > 0) {
             return res.json({
                 success: true,
@@ -32,9 +32,9 @@ exports.getCinemasById = (req, res) => {
 
 exports.createCinemas = (req, res) => {
     const data = req.body
-    cinemasModel.createCinemas(data, (results) => {
+    cinemasModel.createCinema(data, (results) => {
         if (results.affectedRows > 0) {
-            cinemasModel.getCinemasById(results.insertId, (finalResult) => {
+            cinemasModel.getCinemaById(results.insertId, (finalResult) => {
                 if (finalResult.length > 0) {
                     return res.status(201).json({
                         success: true,

@@ -138,13 +138,11 @@ exports.getMovieByIdWithGenreAsync = (id) => {
 exports.getMoviesNowShowing = () => {
   return new Promise((resolve, reject) => {
     const today = new Date();
-    const lastMonth = new Date();
-    lastMonth.setMonth(lastMonth.getMonth() - 1);
-    const todayString = today.toISOString().split('T')[0] //split date and time and format date to iso on first array
-    const lastMonthString = lastMonth.toISOString().split('T')[0]
+    const todayString = today.toISOString().split('T')[0]
+    console.log(todayString)
     const query = db.query(`
     SELECT * FROM movies
-    WHERE releaseDate >= '${lastMonthString}' AND releaseDate <= '${todayString}'
+    WHERE releaseDate <= '${todayString}' AND '${todayString}' <= endDate
     ORDER BY releaseDate ASC
   `, (err, res, field) => {
       if (err) reject(err)

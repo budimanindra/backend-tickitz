@@ -98,7 +98,7 @@ exports.createCinemasAsync = (data = {}, cb) => {
 exports.getAllCinemasByMovieIdAsync = (id, city, date) => {
   return new Promise((resolve, reject) => {
     const query = db.query(`
-    SELECT c.id, c.name, c.image, c.address, ci.name, c.priceWeekend, c.priceWeekdays, st.showTimes
+    SELECT c.id, c.name, c.image, c.address, ci.name, c.priceWeekend, c.priceWeekdays, st.showTimes, st.id AS idShowtime
     FROM cinemas c
     INNER JOIN show_times_cinemas stc ON c.id = stc.idCinemas
     INNER JOIN show_times st ON st.id = stc.idShowTimes
