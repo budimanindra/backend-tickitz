@@ -1,17 +1,5 @@
 const db = require('../helpers/db')
 
-// tanpa pagination
-// exports.getAllCinemas = (cb) => {
-//     const query = db.query(`
-//     SELECT * FROM cinemas
-//   `, (err, res, field) => {
-//         if (err) throw err
-//         // console.log(field)
-//         cb(res)
-//     })
-//     console.log(query.sql)
-// }
-
 exports.getCinemaById = (id, cb) => {
   const query = db.query(`
     SELECT * FROM cinemas WHERE id=${id}
@@ -62,10 +50,6 @@ exports.updateCinemaById = (id, data, cb) => {
   })
   console.log(query.sql)
 }
-
-
-
-// 
 
 exports.getCinemasByCondition = (cond, cb) => {
   const query = db.query(`

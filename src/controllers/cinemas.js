@@ -94,9 +94,40 @@ exports.updateCinemas = (req, res) => {
 exports.getAllCinemasByMovieIdAsync = async (req, res) => {
     const {id,city,date} = req.query
     const cinemas = await cinemasModel.getAllCinemasByMovieIdAsync(id,city,date)
+
+    if (cinemas.length > 0) {
+        const listCinema = []
+        const showTimes = {}
+        const idShowtimes = {}
+        cinemas.forEach(item => {
+          if(!(`${item.id}` in showTimes)) {
+            showTimes[`${item.id}`] = [item.showTimes]
+            idShowtimes[`${item.id}`] = [item.idShowtime]
+            listCinema.push({
+              id: item.id,
+              name: item.name,
+              image: item.image,
+              address: item.address,
+              priceWeekdays: item.priceWeekdays,
+              priceWeekend: item.priceWeekend,
+              idShowtime: idShowtimes[`${item.id}`],
+              showTimes: showTimes[`${item.id}`]
+            })
+          } else {
+            showTimes[`${item.id}`].push(item.showTimes)
+            idShowtimes[`${item.id}`].push(item.idShowtime)
+          }
+        });
+    
+        return res.json({
+          success: true,
+          message: 'Cinemas showtimes in the city',
+          results: listCinema
+        })
+      }
     return res.json({
-      success: true,
+      success: false,
       message: 'cinemas list',
-      results: cinemas
+      results: []
     })
   }

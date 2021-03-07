@@ -57,7 +57,6 @@ exports.register = async (req, res) => {
 exports.updateUserDetails = async (req, res) => {
   
   var {id} = req.userData   
-  console.log(id)
   
   const {
     email, password, fullName, phoneNumber
@@ -78,6 +77,40 @@ exports.updateUserDetails = async (req, res) => {
         fullName: fullName ? fullName : user.fullName,
         phoneNumber: phoneNumber ? phoneNumber : user.phoneNumber
       }
+      try {
+        const updateProfile = await userModel.updateUserDetails(editedUser, id)
+        if (!updateProfile) {
+          return response(res, 400, false, 'Failed to edit profile')
+        } else {
+          return response(res, 200, true, 'Successfully to edit profile', {
+            ...editedUser,
+            password: 'secret'
+          })
+        }
+      } catch (err) {
+        return response(res, 500, false, 'Failed to edit profile, server error')
+      }
+    }
+  } catch (err) {
+    return response(res, 500, false, 'Failed to edit profile, server error')
+  }
+}
+
+exports.updateUserDetails = async (req, res) => {
+  
+  var {id} = req.userData   
+  console.log(id)
+  
+  const {
+    photo
+  } = req.body
+
+  try {
+    const row = await userModel.getUsersByIdAsync( id )
+    const user = row[0]
+    if (!user) {
+      return response(res, 400, false, 'Failed to edit profile, unknown user id')
+    } else {
       try {
         const updateProfile = await userModel.updateUserDetails(editedUser, id)
         if (!updateProfile) {
