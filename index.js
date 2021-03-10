@@ -13,6 +13,7 @@ app.use(morgan('dev'))
 app.use(cors('*'))
 
 app.use('/auth', require('./src/routes/auth'))
+app.use('/profile', require('./src/routes/profile'))
 app.use('/movies', require('./src/routes/movies'))
 app.use('/admin/movies', require('./src/routes/adminMovies'))
 app.use('/cinemas', require('./src/routes/cinemas'))
@@ -22,6 +23,7 @@ app.use('/admin/genres', require('./src/routes/adminGenres.js'))
 app.use('/casts', require('./src/routes/casts'))
 app.use('/cities', require('./src/routes/cities'))
 app.use('/tickets', require('./src/routes/tickets'))
+
 
 
 
