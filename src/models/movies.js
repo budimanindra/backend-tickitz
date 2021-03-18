@@ -141,7 +141,10 @@ exports.getMoviesNowShowing = () => {
     const todayString = today.toISOString().split('T')[0]
     console.log(todayString)
     const query = db.query(`
-    SELECT * FROM movies
+    SELECT m.id, m.name, m.image, m.releaseDate, g.name as genreName
+    FROM movies m
+    INNER JOIN movie_genres mg ON m.id=mg.idMovie
+    INNER JOIN genres g ON g.id=mg.idGenre
     WHERE releaseDate <= '${todayString}' AND '${todayString}' <= endDate
     ORDER BY releaseDate ASC
   `, (err, res, field) => {

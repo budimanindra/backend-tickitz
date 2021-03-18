@@ -12,6 +12,8 @@ exports.login = async (req, res) => {
     if (compare) {
       const { id } = existingUser[0]
       const token = jwt.sign({ id }, APP_KEY)
+      console.log("ini id")
+      console.log({id})
       return res.json({
         success: true,
         message: 'Login successfully',
@@ -34,7 +36,12 @@ exports.register = async (req, res) => {
     const createUser = await userModel.createUserAsync({ email, password: encryptedPassword })
     if (createUser.insertId > 0) {
       const { insertId } = createUser
-      const token = jwt.sign({ insertId }, APP_KEY)
+      const  id = insertId 
+      const token = jwt.sign({ id }, APP_KEY)
+      console.log("ini insert id")
+      console.log({insertId})
+      console.log("ini id")
+      console.log({id})
       return res.json({
         success: true,
         message: 'Register success!',

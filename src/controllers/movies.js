@@ -189,59 +189,40 @@ exports.createMovie = (req, res) => {
 
 
 exports.getMoviesNowShowing = async (req, res) => {
-  const movies = await movieModel.getMoviesNowShowing()
-  console.log(movies)
-  return res.json({
-    success: true,
-    message: 'Now Showing Movie List',
-    results: movies
+  const results = await movieModel.getMoviesNowShowing()
+  if (results.length > 0) {
+    const listMovie = []
+    const genres = {}
+    results.forEach(item => {
+      if(!(`${item.id}` in genres)) {
+        genres[`${item.id}`] = [item.genreName]
+        listMovie.push({
+          id: item.id,
+          name: item.name,
+          image: item.image,
+          releaseDate: item.releaseDate,
+          genreName: genres[`${item.id}`]
+        })
+      } else {
+        genres[`${item.id}`].push(item.genreName)
+      }
+    });
+
+    listMovie.map(item => {
+      item.genreName = item.genreName.join(', ')
+    })
+
+    return res.json({
+      success: true,
+      message: 'Details of Now Showing Movies',
+      results: listMovie
+    })
+  }
+  return res.status(400).json({
+    success: false,
+    message: 'Movies not exists'
   })
 }
-
-// exports.getMoviesUpcoming = async (req, res) => {
-//   const movies = await movieModel.getMoviesUpcoming()
-//   return res.json({
-//     success: true,
-//     message: 'Upcoming Movie List',
-//     results: movies
-//   })
-// }
-
-// exports.getMoviesUpcoming = async (req, res) => {
-//   const results = await movieModel.getMoviesUpcoming()
-//   if (results.length > 0) {
-//     const arr = results.reduce((accumulator, item, _index, source)=> {
-//       const keys = Object.keys(source[0])
-//       const multiData = ['genreName']
-//       keys.forEach(key=>{
-//           if(multiData.indexOf(key)===-1) accumulator[key] = item[key]
-//       })
-//       multiData.forEach(col => {
-//           accumulator[col] = accumulator[col] || [];
-//           if(accumulator[col].indexOf(item[col])===-1) accumulator[col].push(item[col])
-//       })
-//       return accumulator
-//     },{})
-
-//     return res.json({
-//       success: true,
-//       message: 'Details of Movies',
-//       results: 
-//       {
-//         id: arr.id,
-//         name: arr.name,
-//         image: arr.image,
-//         releaseDate: arr.releaseDate,
-//         genreName: arr.genreName.join(', '),
-//       }
-//       // results
-//     })
-//   }
-//   return res.status(400).json({
-//     success: false,
-//     message: 'Movies not exists'
-//   })
-// }
 
 exports.getUpcomingMovies = async (req, res) => {
   const results = await movieModel.getUpcomingMovies()
@@ -271,13 +252,6 @@ exports.getUpcomingMovies = async (req, res) => {
       success: true,
       message: 'Details of Upcoming Movies',
       results: listMovie
-      // results: {
-      //   id: arr.id,
-      //   name: arr.name,
-      //   image: arr.image,
-      //   releaseDate: arr.releaseDate,
-      //   genreName: arr.genreName.join(', '),
-      // }
     })
   }
   return res.status(400).json({

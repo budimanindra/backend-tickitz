@@ -1,5 +1,6 @@
 const upload = require('../helpers/upload').single('photo')
 const multer = require('multer')
+const bcrypt = require('bcrypt')
 const userModel = require('../models/users')
 const response = require('../helpers/response')
 
@@ -37,11 +38,11 @@ exports.updateUserDetails = async (req, res) => {
             })
           }
         } catch (err) {
-          return response(res, 500, false, 'Failed to edit profile, server error')
+          return response(res, 500, false, 'Failed to edit profile')
         }
       }
     } catch (err) {
-      return response(res, 500, false, 'Failed to edit profile, server error')
+      return response(res, 500, false, 'Failed to edit profile')
     }
   }
   
@@ -65,4 +66,25 @@ exports.updateUserDetails = async (req, res) => {
         return response(res, 400, false, 'File cannot be empty')
       }
     })
+  }
+
+  exports.getUserDetails = async (req, res) => {
+  
+    var {id} = req.userData   
+  
+    try {
+      const row = await userModel.getUsersByIdAsync( id )
+      const user = row[0]
+      if (!user) {
+        return response(res, 404, false, 'Failed to get user profile, unknown user id')
+      } else {
+        return response(res, 200, true, 'Successfully get user profile', {
+              ...user,
+              password: 'secret'
+            })
+          }
+        
+      } catch (err) {
+      return response(res, 500, false, 'Failed to get profile, server error')
+    }
   }
