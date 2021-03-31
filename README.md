@@ -61,7 +61,7 @@ This is non-optimized minimal backend app with MySQL and node. This app designed
 - POST    http://localhost:PORT/auth/register Route for user to register an account
 
 ## App Flow
-![alt text](https://github.com/budimanindra/backend-tickitz/blob/master/flowchart-create.png?raw=true)
-![alt text](https://github.com/budimanindra/backend-tickitz/blob/master/flowchart-read.png?raw=true)
-![alt text](https://github.com/budimanindra/backend-tickitz/blob/master/flowchart-update.png?raw=true)
-![alt text](https://github.com/budimanindra/backend-tickitz/blob/master/flowchart-delete.png?raw=true)
+![alt text](https://github.com/budimanindra/backend-tickitz/blob/main/flowchart-create.png?raw=true)
+![alt text](https://github.com/budimanindra/backend-tickitz/blob/main/flowchart-read.png?raw=true)
+![alt text](https://github.com/budimanindra/backend-tickitz/blob/main/flowchart-update.png?raw=true)
+![alt text](https://github.com/budimanindra/backend-tickitz/blob/main/flowchart-delete.png?raw=true)
