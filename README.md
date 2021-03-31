@@ -9,7 +9,8 @@ This is non-optimized minimal backend app with MySQL and node. This app designed
 - Instal XAMPP
 - Run apache and mySQL module
 - Open localhost/phpmyadmin
-- Make MySQL Database which is contains movie, genre, and cinema
+- Make database 'backend-tickitz'
+- Import 'backend-tickitz.sql' to the database
 
 ## How To Run This App
 - Make sure you had clone this repo
@@ -25,27 +26,42 @@ This is non-optimized minimal backend app with MySQL and node. This app designed
   ```
 
 ## API SPECS
-- GET http://localhost:PORT/movies Route for user to get movies list
-- GET http://localhost:PORT/cinemas Route for for user to get cinemas list
-- GET http://localhost:PORT/genres Route for  for user to get genres list
+- GET     http://localhost:PORT/movies Route for user to get movies list 
+- GET     http://localhost:PORT/movies/:id Route for user to get selected movies by id
+- GET     http://localhost:PORT/movies/upcoming-movies-pagination Route for user to get upcoming movies
+- GET     http://localhost:PORT/movies/now-showing-movies-pagination Route for user to get now showing movies
 
-- GET http://localhost:PORT/movies/:id Route for user to get movie details by id
-- GET http://localhost:PORT/cinemas/:id Route for user to get cinema details by id
-- GET http://localhost:PORT/genres/:id Route for user to get genre details by id
+- POST    http://localhost:PORT/tickets/ Route for user to buy seat
+- POST    http://localhost:PORT/tickets/payment Route for user to save payment details
+- GET     http://localhost:PORT/tickets/ Route for user to get seat info
 
-- GET http://localhost:PORT/admin/movies Route for admin to get movies list
-- GET http://localhost:PORT/admin/movies/:id Route for admin to get movie details by id
-- GET http://localhost:PORT/admin/genres Route for admin to get genres list
-- GET http://localhost:PORT/admin/genres/:id Route for admin to get genre details by id
+- GET     http://localhost:PORT/profile/ Route for user to get logged in user details
+- PATCH   http://localhost:PORT/profile/update-profile-details Route for user to edit profile details
+- PATCH   http://localhost:PORT/update-profile-photo Route for user to edit profile photo
 
-- POST http://localhost:PORT/admin/movies Route for admin to add movie
-- POST http://localhost:PORT/cinemas Route for user to add cinema
-- POST http://localhost:PORT/admin/genres Route for admin to add genre
+- GET     http://localhost:PORT/genres/ Route for user to get all genres
+- GET     http://localhost:PORT/genres/:id Route for user to get selected genres by id
 
-- PUT http://localhost:PORT/admin/movies/:id Route for admin to edit movie details by id
-- PUT http://localhost:PORT/cinemas/:id Route for user to edit cinema details by id
-- PUT http://localhost:PORT/admin/genres/:id Route for admin to edit genre details by id
+- GET     http://localhost:PORT/cities/ Route for user to get all cities
+- GET     http://localhost:PORT/cities/:id Route for user to get selected cities by id
 
-- DELETE http://localhost:PORT/admin/movies/:id Route for admin to delete movie by id
-- DELETE http://localhost:PORT/cinemas/:id Route for user to delete cinema by id
-- DELETE http://localhost:PORT/admin/genres/:id Route for admin to delete genre by id
+- GET     http://localhost:PORT/cinemas/ Route for user to get all cinemas
+- GET     http://localhost:PORT/cinemas/:id Route for user to get selected cinemas by id
+- POST    http://localhost:PORT/cinemas/ Route for user to create a cinema
+- PUT     http://localhost:PORT/cinemas/:id Route for user to update selected cinema by id
+- DELETE  http://localhost:PORT/cinemas/:id Route for user to delete selected cinema by id
+
+- GET     http://localhost:PORT/casts/ Route for user to get all casts
+- GET     http://localhost:PORT/casts/:id Route for user to get selected casts by id
+- POST    http://localhost:PORT/casts/ Route for user to create a casts
+- PUT     http://localhost:PORT/casts/:id Route for user to update selected casts by id
+- DELETE  http://localhost:PORT/casts/:id Route for user to delete selected casts by id
+
+- POST    http://localhost:PORT/auth/login Route for user to login
+- POST    http://localhost:PORT/auth/register Route for user to register an account
+
+## App Flow
+![alt text](https://github.com/budimanindra/backend-tickitz/blob/master/flowchart-create.png?raw=true)
+![alt text](https://github.com/budimanindra/backend-tickitz/blob/master/flowchart-read.png?raw=true)
+![alt text](https://github.com/budimanindra/backend-tickitz/blob/master/flowchart-update.png?raw=true)
+![alt text](https://github.com/budimanindra/backend-tickitz/blob/master/flowchart-delete.png?raw=true)
