@@ -259,3 +259,193 @@ exports.getUpcomingMovies = async (req, res) => {
     message: 'Movies not exists'
   })
 }
+
+exports.getUpcomingMoviesPagination = async (req, res) => {
+  const {
+    page = 1,
+    search = '',
+    sort = 'ASC',
+    limit = 4,
+    by = 'releaseDate'
+  } = req.query
+
+  try {
+    const startData = limit * page - limit
+    const totalData = await movieModel.getUpcomingMoviesCount ()
+    const totalDataSearch = await movieModel.getUpcomingMoviesCountSearch({
+      keyword: search,
+      sort,
+      offset: startData,
+      limit,
+      by,
+      id: req.userData
+    })
+    const totalPages = Math.ceil(totalData / limit)
+
+    try {
+      const results = await movieModel.findUpcomingMovies({
+        keyword: search,
+        sort,
+        offset: startData,
+        limit,
+        by,
+        id: req.userData
+      })
+
+      const listMovie = []
+      const genres = {}
+      if (results.length > 0) {
+        results.forEach(item => {
+          if(!(`${item.id}` in genres)) {
+            genres[`${item.id}`] = [item.genreName]
+            listMovie.push({
+              id: item.id,
+              name: item.name,
+              image: item.image,
+              releaseDate: item.releaseDate,
+              genreName: genres[`${item.id}`]
+            })
+          } else {
+            genres[`${item.id}`].push(item.genreName)
+          }
+        });
+    
+        listMovie.map(item => {
+          item.genreName = item.genreName.join(', ')
+        })}
+
+
+      const modifiedTotalData = req.query.search ? totalDataSearch : totalData
+      const modifiedTotalPage = req.query.search
+        ? Math.ceil(modifiedTotalData / limit)
+        : totalPages
+
+      if (results.length < 1) {
+        return response(
+          res,
+          200,
+          true,
+          'Data not available',
+          listMovie,
+          modifiedTotalData,
+          modifiedTotalPage,
+          page,
+          req
+        )
+      } else {
+        return response(
+          res,
+          200,
+          true,
+          'Successfully to get all users',
+          listMovie,
+          modifiedTotalData,
+          modifiedTotalPage,
+          page,
+          req
+        )
+      }
+    } catch (err) {
+      console.log(err)
+      return response(res, 500, false, 'Failed to get upcoming movies list, server error')
+    }
+  } catch (err) {
+    console.log(err)
+    return response(res, 500, false, 'Failed to get upcoming movies count, server error')
+  }
+}
+
+exports.getNowShowingMoviesPagination = async (req, res) => {
+  const {
+    page = 1,
+    search = '',
+    sort = 'ASC',
+    limit = 4,
+    by = 'releaseDate'
+  } = req.query
+
+  try {
+    const startData = limit * page - limit
+    const totalData = await movieModel.getNowShowingMoviesCount ()
+    const totalDataSearch = await movieModel.getNowShowingMoviesCountSearch({
+      keyword: search,
+      sort,
+      offset: startData,
+      limit,
+      by,
+      id: req.userData
+    })
+    const totalPages = Math.ceil(totalData / limit)
+
+    try {
+      const results = await movieModel.findNowShowingMovies({
+        keyword: search,
+        sort,
+        offset: startData,
+        limit,
+        by,
+        id: req.userData
+      })
+
+      const listMovie = []
+      const genres = {}
+      if (results.length > 0) {
+        results.forEach(item => {
+          if(!(`${item.id}` in genres)) {
+            genres[`${item.id}`] = [item.genreName]
+            listMovie.push({
+              id: item.id,
+              name: item.name,
+              image: item.image,
+              releaseDate: item.releaseDate,
+              genreName: genres[`${item.id}`]
+            })
+          } else {
+            genres[`${item.id}`].push(item.genreName)
+          }
+        });
+    
+        listMovie.map(item => {
+          item.genreName = item.genreName.join(', ')
+        })}
+
+
+      const modifiedTotalData = req.query.search ? totalDataSearch : totalData
+      const modifiedTotalPage = req.query.search
+        ? Math.ceil(modifiedTotalData / limit)
+        : totalPages
+
+      if (results.length < 1) {
+        return response(
+          res,
+          200,
+          true,
+          'Data not available',
+          listMovie,
+          modifiedTotalData,
+          modifiedTotalPage,
+          page,
+          req
+        )
+      } else {
+        return response(
+          res,
+          200,
+          true,
+          'Successfully to get all users',
+          listMovie,
+          modifiedTotalData,
+          modifiedTotalPage,
+          page,
+          req
+        )
+      }
+    } catch (err) {
+      console.log(err)
+      return response(res, 500, false, 'Failed to get upcoming movies list, server error')
+    }
+  } catch (err) {
+    console.log(err)
+    return response(res, 500, false, 'Failed to get upcoming movies count, server error')
+  }
+}

@@ -172,3 +172,119 @@ exports.getUpcomingMovies = () => {
     })
   })
 }
+
+exports.getUpcomingMoviesCount = () => {
+  return new Promise((resolve, reject) => {
+    const today = new Date();
+    const todayString = today.toISOString().split('T')[0]
+    const query = db.query(`
+    SELECT COUNT(distinct m.id)
+    FROM movies m
+    INNER JOIN movie_genres mg ON m.id=mg.idMovie
+    INNER JOIN genres g ON g.id=mg.idGenre
+    WHERE releaseDate > '${todayString}'
+    ORDER BY releaseDate ASC
+  `, (err, res, field) => {
+      if (err) reject(err)
+      return resolve(res[0]['COUNT(distinct m.id)'])
+    })
+  })
+}
+
+exports.getUpcomingMoviesCountSearch = (data) => {
+  return new Promise((resolve, reject) => {
+    const today = new Date();
+    const todayString = today.toISOString().split('T')[0]
+    const query = db.query(`
+    SELECT COUNT(distinct m.id)
+    FROM movies m
+    INNER JOIN movie_genres mg ON m.id=mg.idMovie
+    INNER JOIN genres g ON g.id=mg.idGenre
+    WHERE releaseDate > '${todayString}' AND m.name LIKE '%${data.keyword}%'
+    ORDER BY m.${data.by} ${data.sort}
+  `, (err, res, field) => {
+      if (err) reject(err)
+      console.log(query.sql)
+      return resolve(res[0]['COUNT(distinct m.id)'])
+    })
+  })
+}
+
+exports.findUpcomingMovies = (data) => {
+  return new Promise((resolve, reject) => {
+    const today = new Date();
+    const todayString = today.toISOString().split('T')[0]
+    const query = db.query(`
+    SELECT m.id, m.name, m.image, m.releaseDate, g.name as genreName
+    FROM movies m
+    INNER JOIN movie_genres mg ON m.id=mg.idMovie
+    INNER JOIN genres g ON g.id=mg.idGenre
+    WHERE releaseDate > '${todayString}' AND m.name LIKE '%${data.keyword}%'
+    GROUP BY m.name
+    ORDER BY ${data.by} ${data.sort}
+    ${data.offset || data.limit ? `LIMIT ${data.offset}, ${data.limit}` : ''}
+  `, (err, res, field) => {
+      if (err) reject(err)
+      console.log(query.sql)
+      resolve(res)
+    })
+  })
+}
+
+exports.getNowShowingMoviesCount = () => {
+  return new Promise((resolve, reject) => {
+    const today = new Date();
+    const todayString = today.toISOString().split('T')[0]
+    const query = db.query(`
+    SELECT COUNT(distinct m.id)
+    FROM movies m
+    INNER JOIN movie_genres mg ON m.id=mg.idMovie
+    INNER JOIN genres g ON g.id=mg.idGenre
+    WHERE releaseDate <= '${todayString}' AND '${todayString}' <= endDate
+    ORDER BY releaseDate ASC
+  `, (err, res, field) => {
+      if (err) reject(err)
+      return resolve(res[0]['COUNT(distinct m.id)'])
+    })
+  })
+}
+
+exports.getNowShowingMoviesCountSearch = (data) => {
+  return new Promise((resolve, reject) => {
+    const today = new Date();
+    const todayString = today.toISOString().split('T')[0]
+    const query = db.query(`
+    SELECT COUNT(distinct m.id)
+    FROM movies m
+    INNER JOIN movie_genres mg ON m.id=mg.idMovie
+    INNER JOIN genres g ON g.id=mg.idGenre
+    WHERE releaseDate <= '${todayString}' AND '${todayString}' <= endDate AND m.name LIKE '%${data.keyword}%'
+    ORDER BY m.${data.by} ${data.sort}
+  `, (err, res, field) => {
+      if (err) reject(err)
+      console.log(query.sql)
+      return resolve(res[0]['COUNT(distinct m.id)'])
+    })
+  })
+}
+
+exports.findNowShowingMovies = (data) => {
+  return new Promise((resolve, reject) => {
+    const today = new Date();
+    const todayString = today.toISOString().split('T')[0]
+    const query = db.query(`
+    SELECT m.id, m.name, m.image, m.releaseDate, g.name as genreName
+    FROM movies m
+    INNER JOIN movie_genres mg ON m.id=mg.idMovie
+    INNER JOIN genres g ON g.id=mg.idGenre
+    WHERE releaseDate <= '${todayString}' AND '${todayString}' <= endDate AND m.name LIKE '%${data.keyword}%'
+    GROUP BY m.name
+    ORDER BY ${data.by} ${data.sort}
+    ${data.offset || data.limit ? `LIMIT ${data.offset}, ${data.limit}` : ''}
+  `, (err, res, field) => {
+      if (err) reject(err)
+      console.log(query.sql)
+      resolve(res)
+    })
+  })
+}
