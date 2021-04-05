@@ -3,7 +3,7 @@ const db = require('../helpers/db')
 exports.getUsersByIdAsync = (id) => {
   return new Promise((resolve, reject) => {
     const query = db.query(`
-    SELECT id, email, password, fullName, phoneNumber FROM users WHERE id=${id}
+    SELECT id, email, password, fullName, phoneNumber, photo FROM users WHERE id=${id}
   `, (err, res, field) => {
       if (err) reject(err)
       resolve(res)

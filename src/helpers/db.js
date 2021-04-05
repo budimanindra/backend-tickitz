@@ -3,14 +3,16 @@ const {
     DB_HOST,
     DB_NAME,
     DB_USER,
-    DB_PASSWORD
+    DB_PASSWORD,
+    DB_TIMEZONE
 } = process.env
 
 const conn = mysql.createConnection({
     host: DB_HOST,
     database: DB_NAME,
     user: DB_USER,
-    password: DB_PASSWORD
+    password: DB_PASSWORD,
+    timezone: DB_TIMEZONE
 })
 
 conn.connect()
