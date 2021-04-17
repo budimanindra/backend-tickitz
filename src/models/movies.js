@@ -1,34 +1,5 @@
 const db = require('../helpers/db')
 
-// tanpa pagination
-// exports.getAllMovies = (cb) => {
-//     const query = db.query(`
-//     SELECT * FROM movies
-//   `, (err, res, field) => {
-//         if (err) throw err
-//         // console.log(field)
-//         cb(res)
-//     })
-//     console.log(query.sql)
-// }
-
-// exports.getMovieById = (id, cb) => {
-//   const query = db.query(`
-//       SELECT m.id, m.name, m.image, m.releaseDate, m.endDate, m.duration, m.directedBy, m.synopsis, g.name as genreName, c.name as castName
-//       FROM movies m
-//       INNER JOIN movie_genres mg ON m.id=mg.idMovie
-//       INNER JOIN genres g ON g.id=mg.idGenre
-//       INNER JOIN movie_casts mc ON m.id=mc.idMovie
-//       INNER JOIN casts c ON c.id=mc.idCast
-//       WHERE m.id=${id}
-//   `, (err, res, field) => {
-//     if (err) throw err
-//     // console.log(field)
-//     cb(res)
-//   })
-//   console.log(query.sql)
-// }
-
 exports.getMovieById = (id) => {
   return new Promise((resolve, reject) => {
     const query = db.query(`
@@ -86,10 +57,6 @@ exports.updateMovieById = (id, data, cb) => {
   })
   console.log(query.sql)
 }
-
-
-
-// 
 
 exports.getMoviesByCondition = (cond, cb) => {
   const query = db.query(`
@@ -186,6 +153,7 @@ exports.getUpcomingMoviesCount = () => {
     ORDER BY releaseDate ASC
   `, (err, res, field) => {
       if (err) reject(err)
+      console.log(query.sql)
       return resolve(res[0]['COUNT(distinct m.id)'])
     })
   })

@@ -107,7 +107,6 @@ exports.listMovies = (req, res) => {
 exports.createMovie = (req, res) => {
   upload(req, res, async err => {
     const data = req.body
-    console.log(data)
     const selectedGenre = []
     if (err instanceof multer.MulterError) {
       return res.json({
@@ -145,7 +144,6 @@ exports.createMovie = (req, res) => {
         })
       }
     }
-    console.log(data)
     const movieData = {
       name: data.name,
       image: (req.file && req.file.path) || data.image,

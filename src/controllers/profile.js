@@ -59,7 +59,6 @@ exports.updateUserDetails = async (req, res) => {
           id: id,
           photo: `${req.file.destination}/${req.file.filename}` || null
         }
-        console.log(Data)
         const result = await userModel.updateUserPhoto(Data)
         return response(res, 200, true, 'Successfully update photo profile')
       } catch (err) {

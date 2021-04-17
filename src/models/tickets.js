@@ -59,3 +59,30 @@ exports.pay = (paymentDetail) => {
     console.log(query)}
   )
 }
+
+exports.makeTicketHistory = (ticketDetail) => {
+  return new Promise((resolve, reject) => {
+    const query = db.query(`
+    INSERT INTO ticket_history
+    (${Object.keys(ticketDetail).join()})
+    VALUES
+    (${Object.values(ticketDetail).map(item => `"${item}"`).join(',')})
+    `, (err, res, field) => {
+      if (err) reject(err)
+      resolve(res)
+    })}
+  )
+}
+
+exports.getTicketHistory = (idUser) => {
+  return new Promise((resolve, reject) => {
+    const query = db.query(`
+    SELECT id, idUser, movieName, date, showTimes, image, address FROM ticket_history
+    WHERE idUser = ${idUser} 
+    ORDER BY id DESC
+    `, (err, res, field) => {
+      if (err) reject(err)
+      resolve(res)
+    })
+    console.log(query.sql)})
+}

@@ -25,9 +25,6 @@ app.use('/casts', require('./src/routes/casts'))
 app.use('/cities', require('./src/routes/cities'))
 app.use('/tickets', require('./src/routes/tickets'))
 
-
-
-
 app.get('/', (request, response) => {
   return response.json({
     success: true,
