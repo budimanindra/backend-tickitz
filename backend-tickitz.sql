@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Mar 31, 2021 at 08:44 PM
--- Server version: 10.4.6-MariaDB
--- PHP Version: 7.3.9
+-- Waktu pembuatan: 18 Apr 2021 pada 19.18
+-- Versi server: 10.4.6-MariaDB
+-- Versi PHP: 7.3.9
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
@@ -25,7 +25,7 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
--- Table structure for table `casts`
+-- Struktur dari tabel `casts`
 --
 
 CREATE TABLE `casts` (
@@ -36,7 +36,7 @@ CREATE TABLE `casts` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `casts`
+-- Dumping data untuk tabel `casts`
 --
 
 INSERT INTO `casts` (`id`, `name`, `createdAt`, `updatedAt`) VALUES
@@ -77,7 +77,7 @@ INSERT INTO `casts` (`id`, `name`, `createdAt`, `updatedAt`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `cinemas`
+-- Struktur dari tabel `cinemas`
 --
 
 CREATE TABLE `cinemas` (
@@ -92,7 +92,7 @@ CREATE TABLE `cinemas` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `cinemas`
+-- Dumping data untuk tabel `cinemas`
 --
 
 INSERT INTO `cinemas` (`id`, `name`, `image`, `address`, `priceWeekend`, `priceWeekdays`, `createdAt`, `updatedAt`) VALUES
@@ -106,7 +106,7 @@ INSERT INTO `cinemas` (`id`, `name`, `image`, `address`, `priceWeekend`, `priceW
 -- --------------------------------------------------------
 
 --
--- Table structure for table `cinemas_movies`
+-- Struktur dari tabel `cinemas_movies`
 --
 
 CREATE TABLE `cinemas_movies` (
@@ -118,7 +118,7 @@ CREATE TABLE `cinemas_movies` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `cinemas_movies`
+-- Dumping data untuk tabel `cinemas_movies`
 --
 
 INSERT INTO `cinemas_movies` (`id`, `idCinemas`, `idMovies`, `createdAt`, `updatedAt`) VALUES
@@ -194,7 +194,7 @@ INSERT INTO `cinemas_movies` (`id`, `idCinemas`, `idMovies`, `createdAt`, `updat
 -- --------------------------------------------------------
 
 --
--- Table structure for table `cities`
+-- Struktur dari tabel `cities`
 --
 
 CREATE TABLE `cities` (
@@ -205,7 +205,7 @@ CREATE TABLE `cities` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `cities`
+-- Dumping data untuk tabel `cities`
 --
 
 INSERT INTO `cities` (`id`, `name`, `createdAt`, `updatedAt`) VALUES
@@ -215,7 +215,7 @@ INSERT INTO `cities` (`id`, `name`, `createdAt`, `updatedAt`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `cities_cinemas`
+-- Struktur dari tabel `cities_cinemas`
 --
 
 CREATE TABLE `cities_cinemas` (
@@ -227,7 +227,7 @@ CREATE TABLE `cities_cinemas` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `cities_cinemas`
+-- Dumping data untuk tabel `cities_cinemas`
 --
 
 INSERT INTO `cities_cinemas` (`id`, `idCities`, `idCinemas`, `createdAt`, `updatedAt`) VALUES
@@ -241,7 +241,7 @@ INSERT INTO `cities_cinemas` (`id`, `idCities`, `idCinemas`, `createdAt`, `updat
 -- --------------------------------------------------------
 
 --
--- Table structure for table `genres`
+-- Struktur dari tabel `genres`
 --
 
 CREATE TABLE `genres` (
@@ -252,7 +252,7 @@ CREATE TABLE `genres` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `genres`
+-- Dumping data untuk tabel `genres`
 --
 
 INSERT INTO `genres` (`id`, `name`, `createdAt`, `updatedAt`) VALUES
@@ -271,7 +271,7 @@ INSERT INTO `genres` (`id`, `name`, `createdAt`, `updatedAt`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `movies`
+-- Struktur dari tabel `movies`
 --
 
 CREATE TABLE `movies` (
@@ -288,7 +288,7 @@ CREATE TABLE `movies` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `movies`
+-- Dumping data untuk tabel `movies`
 --
 
 INSERT INTO `movies` (`id`, `name`, `image`, `releaseDate`, `endDate`, `duration`, `directedBy`, `synopsis`, `createdAt`, `updateAt`) VALUES
@@ -311,12 +311,12 @@ INSERT INTO `movies` (`id`, `name`, `image`, `releaseDate`, `endDate`, `duration
 (19, 'Cosmic Sin', 'https://www.themoviedb.org/t/p/w600_and_h900_bestv2/rMMvawtaQGvXQq2vqrpg3vtJfwa.jpg', '2021-03-12', '2021-04-12', '01:33:00', 'Edward Drake', 'Seven rogue soldiers launch a preemptive strike against a newly discovered alien civilization in the hopes of ending an interstellar war before it starts.', '2021-03-06 18:52:55', NULL),
 (20, 'Godzilla vs. Kong', 'https://www.themoviedb.org/t/p/w600_and_h900_bestv2/pgqgaUx1cJb5oZQQ5v0tNARCeBp.jpg', '2021-03-31', '2021-04-30', '01:53:00', 'Adam Wingard', 'In a time when monsters walk the Earth, humanity\'s fight for its future sets Godzilla and Kong on a collision course that will see the two most powerful forces of nature on the planet collide in a spectacular battle for the ages.', '2021-03-06 18:52:55', NULL),
 (21, 'Raya and the Last Dragon', 'https://www.themoviedb.org/t/p/w600_and_h900_bestv2/lPsD10PP4rgUGiGR4CCXA6iY0QQ.jpg', '2021-03-05', '2021-04-05', '01:47:00', 'Don Hall', 'Long ago, in the fantasy world of Kumandra, humans and dragons lived together in harmony. But when an evil force threatened the land, the dragons sacrificed themselves to save humanity. Now, 500 years later, that same evil has returned and it’s up to a lone warrior, Raya, to track down the legendary last dragon to restore the fractured land and its divided people.', '2021-03-06 19:26:26', NULL),
-(22, 'Boogie', 'https://www.themoviedb.org/t/p/w600_and_h900_bestv2/nqukNKRw6KsE6X3SqyuzXaW8flQ.jpg', '2021-03-05', '2021-04-05', '01:29:00', 'Eddie Huang', 'Alfred Boogie Chin is a basketball phenom living in Queens, New York, who dreams of one day playing in the NBA. While his parents pressure him to focus on earning a scholarship to an elite college, Boogie must find a way to navigate a new girlfriend, high school, on-court rivals and the burden of expectation.', '2021-03-06 19:26:26', NULL);
+(22, 'Boogie', 'https://www.themoviedb.org/t/p/w600_and_h900_bestv2/nqukNKRw6KsE6X3SqyuzXaW8flQ.jpg', '2021-04-05', '2021-05-05', '01:29:00', 'Eddie Huang', 'Alfred Boogie Chin is a basketball phenom living in Queens, New York, who dreams of one day playing in the NBA. While his parents pressure him to focus on earning a scholarship to an elite college, Boogie must find a way to navigate a new girlfriend, high school, on-court rivals and the burden of expectation.', '2021-03-06 19:26:26', '2021-04-13 09:12:16');
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `movie_casts`
+-- Struktur dari tabel `movie_casts`
 --
 
 CREATE TABLE `movie_casts` (
@@ -328,7 +328,7 @@ CREATE TABLE `movie_casts` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `movie_casts`
+-- Dumping data untuk tabel `movie_casts`
 --
 
 INSERT INTO `movie_casts` (`id`, `idMovie`, `idCast`, `createdAt`, `updatedAt`) VALUES
@@ -371,7 +371,7 @@ INSERT INTO `movie_casts` (`id`, `idMovie`, `idCast`, `createdAt`, `updatedAt`) 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `movie_genres`
+-- Struktur dari tabel `movie_genres`
 --
 
 CREATE TABLE `movie_genres` (
@@ -383,7 +383,7 @@ CREATE TABLE `movie_genres` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `movie_genres`
+-- Dumping data untuk tabel `movie_genres`
 --
 
 INSERT INTO `movie_genres` (`id`, `idMovie`, `idGenre`, `createdAt`, `updatedAt`) VALUES
@@ -427,7 +427,7 @@ INSERT INTO `movie_genres` (`id`, `idMovie`, `idGenre`, `createdAt`, `updatedAt`
 -- --------------------------------------------------------
 
 --
--- Table structure for table `payment`
+-- Struktur dari tabel `payment`
 --
 
 CREATE TABLE `payment` (
@@ -442,7 +442,7 @@ CREATE TABLE `payment` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `payment`
+-- Dumping data untuk tabel `payment`
 --
 
 INSERT INTO `payment` (`id`, `paymentMethod`, `fullName`, `email`, `phoneNumber`, `idUser`, `createdAt`, `updateAt`) VALUES
@@ -451,7 +451,7 @@ INSERT INTO `payment` (`id`, `paymentMethod`, `fullName`, `email`, `phoneNumber`
 -- --------------------------------------------------------
 
 --
--- Table structure for table `seat`
+-- Struktur dari tabel `seat`
 --
 
 CREATE TABLE `seat` (
@@ -462,7 +462,7 @@ CREATE TABLE `seat` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `seat`
+-- Dumping data untuk tabel `seat`
 --
 
 INSERT INTO `seat` (`id`, `position`, `createdAt`, `updatedAt`) VALUES
@@ -568,7 +568,7 @@ INSERT INTO `seat` (`id`, `position`, `createdAt`, `updatedAt`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `show_times`
+-- Struktur dari tabel `show_times`
 --
 
 CREATE TABLE `show_times` (
@@ -579,7 +579,7 @@ CREATE TABLE `show_times` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `show_times`
+-- Dumping data untuk tabel `show_times`
 --
 
 INSERT INTO `show_times` (`id`, `showTimes`, `createdAt`, `updatedAt`) VALUES
@@ -595,7 +595,7 @@ INSERT INTO `show_times` (`id`, `showTimes`, `createdAt`, `updatedAt`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `show_times_cinemas`
+-- Struktur dari tabel `show_times_cinemas`
 --
 
 CREATE TABLE `show_times_cinemas` (
@@ -607,7 +607,7 @@ CREATE TABLE `show_times_cinemas` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `show_times_cinemas`
+-- Dumping data untuk tabel `show_times_cinemas`
 --
 
 INSERT INTO `show_times_cinemas` (`id`, `idShowTimes`, `idCinemas`, `createdAt`, `updatedAt`) VALUES
@@ -663,7 +663,7 @@ INSERT INTO `show_times_cinemas` (`id`, `idShowTimes`, `idCinemas`, `createdAt`,
 -- --------------------------------------------------------
 
 --
--- Table structure for table `ticket`
+-- Struktur dari tabel `ticket`
 --
 
 CREATE TABLE `ticket` (
@@ -677,7 +677,7 @@ CREATE TABLE `ticket` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `ticket`
+-- Dumping data untuk tabel `ticket`
 --
 
 INSERT INTO `ticket` (`id`, `idCinema`, `idSeat`, `idShowTimes`, `date`, `createdAt`, `updatedAt`) VALUES
@@ -787,12 +787,82 @@ INSERT INTO `ticket` (`id`, `idCinema`, `idSeat`, `idShowTimes`, `date`, `create
 (106, 1, 3, 7, '2021-03-12', '2021-03-12 18:14:42', NULL),
 (107, 6, 1, 6, '2021-03-12', '2021-03-12 18:52:01', NULL),
 (108, 6, 2, 6, '2021-03-12', '2021-03-12 18:52:01', NULL),
-(109, 6, 3, 6, '2021-03-12', '2021-03-12 18:52:01', NULL);
+(109, 6, 3, 6, '2021-03-12', '2021-03-12 18:52:01', NULL),
+(110, 1, 1, 0, '0000-00-00', '2021-03-31 19:42:05', NULL),
+(111, 1, 2, 0, '0000-00-00', '2021-03-31 19:42:05', NULL),
+(112, 1, 1, 7, '2021-04-09', '2021-04-09 13:39:24', NULL),
+(113, 1, 2, 7, '2021-04-09', '2021-04-09 13:39:24', NULL),
+(114, 1, 3, 7, '2021-04-09', '2021-04-09 13:39:24', NULL),
+(115, 8, 1, 4, '2021-04-14', '2021-04-13 07:39:47', NULL),
+(116, 8, 2, 4, '2021-04-14', '2021-04-13 07:39:47', NULL),
+(117, 8, 3, 4, '2021-04-14', '2021-04-13 07:39:47', NULL),
+(118, 1, 1, 4, '2021-04-16', '2021-04-13 07:40:45', NULL),
+(119, 1, 15, 4, '2021-04-16', '2021-04-13 07:40:45', NULL),
+(120, 1, 29, 4, '2021-04-16', '2021-04-13 07:40:45', NULL),
+(121, 1, 1, 2, '2021-04-13', '2021-04-13 09:12:56', NULL),
+(122, 1, 2, 2, '2021-04-13', '2021-04-13 09:12:56', NULL),
+(123, 1, 3, 2, '2021-04-13', '2021-04-13 09:12:56', NULL),
+(124, 1, 91, 1, '2021-04-14', '2021-04-13 10:25:46', NULL),
+(125, 1, 90, 1, '2021-04-14', '2021-04-13 10:25:46', NULL),
+(126, 1, 76, 1, '2021-04-14', '2021-04-13 10:25:46', NULL),
+(127, 1, 77, 1, '2021-04-14', '2021-04-13 10:25:46', NULL),
+(128, 6, 1, 5, '2021-04-14', '2021-04-13 10:48:46', NULL),
+(129, 6, 2, 5, '2021-04-14', '2021-04-13 10:48:46', NULL),
+(130, 6, 4, 5, '2021-04-14', '2021-04-13 10:48:46', NULL),
+(131, 6, 1, 8, '2021-04-13', '2021-04-13 11:00:49', NULL),
+(132, 6, 2, 8, '2021-04-13', '2021-04-13 11:00:50', NULL),
+(133, 6, 18, 8, '2021-04-13', '2021-04-13 11:00:50', NULL),
+(134, 1, 6, 5, '2021-04-13', '2021-04-13 11:03:47', NULL),
+(135, 1, 7, 5, '2021-04-13', '2021-04-13 11:03:48', NULL),
+(136, 1, 21, 5, '2021-04-13', '2021-04-13 11:03:48', NULL),
+(137, 1, 5, 5, '2021-04-13', '2021-04-13 12:00:41', NULL),
+(138, 1, 20, 5, '2021-04-13', '2021-04-13 12:00:41', NULL),
+(139, 1, 35, 5, '2021-04-13', '2021-04-13 12:00:41', NULL),
+(140, 1, 6, 7, '2021-04-14', '2021-04-13 12:01:55', NULL),
+(141, 1, 7, 7, '2021-04-14', '2021-04-13 12:01:55', NULL),
+(142, 1, 21, 7, '2021-04-14', '2021-04-13 12:01:56', NULL),
+(143, 1, 1, 2, '2021-04-20', '2021-04-17 15:52:57', NULL),
+(144, 1, 15, 2, '2021-04-20', '2021-04-17 15:52:57', NULL),
+(145, 1, 29, 2, '2021-04-20', '2021-04-17 15:52:57', NULL),
+(146, 1, 30, 2, '2021-04-20', '2021-04-17 15:52:57', NULL),
+(147, 1, 31, 2, '2021-04-20', '2021-04-17 15:52:57', NULL),
+(148, 1, 1, 2, '2021-04-17', '2021-04-17 15:54:03', NULL),
+(149, 1, 2, 2, '2021-04-17', '2021-04-17 15:54:04', NULL),
+(150, 1, 16, 2, '2021-04-17', '2021-04-17 15:54:04', NULL);
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `users`
+-- Struktur dari tabel `ticket_history`
+--
+
+CREATE TABLE `ticket_history` (
+  `id` int(11) NOT NULL,
+  `idUser` int(11) NOT NULL,
+  `movieName` varchar(80) NOT NULL,
+  `date` date NOT NULL,
+  `showTimes` time NOT NULL,
+  `image` varchar(80) NOT NULL,
+  `address` text NOT NULL,
+  `createdAt` timestamp NOT NULL DEFAULT current_timestamp(),
+  `updateAt` timestamp NULL DEFAULT NULL ON UPDATE current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data untuk tabel `ticket_history`
+--
+
+INSERT INTO `ticket_history` (`id`, `idUser`, `movieName`, `date`, `showTimes`, `image`, `address`, `createdAt`, `updateAt`) VALUES
+(16, 11, 'Dark Phoenix', '2021-03-04', '08:30:00', 'https://i.imgur.com/Xq4Tf4t.png', 'gatep', '2021-04-13 11:57:43', NULL),
+(17, 11, 'Boogie', '2021-04-13', '16:00:00', 'https://i.imgur.com/Xq4Tf4t.png', 'Jl Pejanggik 65,Mataram Timur', '2021-04-13 12:00:41', NULL),
+(18, 11, 'Nobody', '2021-04-14', '21:00:00', 'https://i.imgur.com/Xq4Tf4t.png', 'Jl Pejanggik 65,Mataram Timur', '2021-04-13 12:01:55', NULL),
+(19, 11, 'Nobody', '2021-04-20', '10:00:00', 'https://i.imgur.com/Xq4Tf4t.png', 'Jl Pejanggik 65,Mataram Timur', '2021-04-17 15:52:57', NULL),
+(20, 11, 'Nobody', '2021-04-17', '10:00:00', 'https://i.imgur.com/Xq4Tf4t.png', 'Jl Pejanggik 65,Mataram Timur', '2021-04-17 15:54:03', NULL);
+
+-- --------------------------------------------------------
+
+--
+-- Struktur dari tabel `users`
 --
 
 CREATE TABLE `users` (
@@ -807,14 +877,14 @@ CREATE TABLE `users` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `users`
+-- Dumping data untuk tabel `users`
 --
 
 INSERT INTO `users` (`id`, `email`, `password`, `fullName`, `phoneNumber`, `photo`, `createdAt`, `updatedAt`) VALUES
 (9, 'rabudiman@gmail.com', '$2b$10$LkVCb/qtjmHu63jVK5uF6ehC0rrT1uhKFSd1T/Sr76UlvzdHUvWJy', 'Indra', '0895383636947', 'uploads/1615572703368-rn_image_picker_lib_temp_e4314e7a-71bd-4431-b1ad-98ccd021a1fe.jpg', '0000-00-00 00:00:00', '2021-03-12 18:11:43'),
-(11, 'budimanindra98@gmail.com', '$2b$10$4Dplrf1Wl9h.nZIwrAt1u.TXNaaSCmrWUrpFfJ/v4XTpgSO3ZomAC', NULL, NULL, 'uploads/1615469278584-rn_image_picker_lib_temp_07b894c0-8a95-4406-8fbb-de256e380dca.jpg', '2021-03-08 18:26:31', '2021-03-11 13:27:58'),
+(11, 'budimanindra98@gmail.com', '$2b$10$4Dplrf1Wl9h.nZIwrAt1u.TXNaaSCmrWUrpFfJ/v4XTpgSO3ZomAC', 'Indra', 'null', 'uploads/1618297755812-rn_image_picker_lib_temp_c703c578-c01e-49de-977f-471d8e42a7b7.jpg', '2021-03-08 18:26:31', '2021-04-13 07:09:29'),
 (12, 'Wr10@gmail.com', '$2b$10$zxjqxJyUKXny1fXumysVXOctmX0giV.7YCiPOY7cH67pvPlM3Mb.C', NULL, NULL, NULL, '2021-03-08 19:11:20', '2021-03-11 12:58:00'),
-(13, 'ezforgaming@gmail.com', '$2b$10$KHqaLTO6eBhkq5qc7dqD3OjZ0kKHkDA2kQvRURVDQ00eUo4qMoWVC', 'Ezra', 'null', 'uploads/1615382996363-rn_image_picker_lib_temp_812950f0-3f1c-47f1-985d-5b2ed05dbdae.jpg', '0000-00-00 00:00:00', '0000-00-00 00:00:00'),
+(13, 'ezforgaming@gmail.com', '$2b$10$KHqaLTO6eBhkq5qc7dqD3OjZ0kKHkDA2kQvRURVDQ00eUo4qMoWVC', 'Ezra', 'null', 'uploads/1617618099954-rn_image_picker_lib_temp_c6edba79-3f56-4556-9da9-440cfc6dcf12.jpg', '0000-00-00 00:00:00', '2021-04-05 10:21:40'),
 (16, 'namanyajugahidup@gmail.com', '$2b$10$XV1T9IrTV41.zLyJqOgI6ufQw63.saseJwEBbgpMAVQ6SMrbVGhqG', 'Bambang Herlambang', '08123456789', 'uploads/1615569101557-rn_image_picker_lib_temp_25d94f43-9f90-4cea-ac6a-c57b2d5df0c0.jpg', '0000-00-00 00:00:00', '0000-00-00 00:00:00'),
 (17, 'akuindra@gmail.com', '$2b$10$1HzGTytcrS9.7S9kM4ok7OKMCfnvifP5hmdjwGHZNbTHwCEB96jXu', NULL, NULL, NULL, '2021-03-12 17:13:36', NULL),
 (18, 'adaaja@gmail.com', '$2b$10$rruEapcDbM4nutkULtpBuO8SaScbtfWb0r8gr524nqt.8uE.2rI.u', NULL, NULL, NULL, '2021-03-12 17:38:55', NULL),
@@ -828,31 +898,35 @@ INSERT INTO `users` (`id`, `email`, `password`, `fullName`, `phoneNumber`, `phot
 (26, 'adaaja9@gmail.com', '$2b$10$TLth9HtcAlxo9eH4VPTYRev0CUq7o1W0gyESSE9pfmuZbOW6XFAF6', NULL, NULL, NULL, '2021-03-12 17:53:52', NULL),
 (27, 'adaaja10@gmail.com', '$2b$10$mQXmMK6m1mwL4565Y/YFqexhySeDEcyosZ/ODTD3Sv3LVxD58Kgfu', NULL, NULL, NULL, '2021-03-12 17:54:11', NULL),
 (28, 'adaaja11@gmail.com', '$2b$10$RfioK4fcF4xxcvltkz6/VuWLl7XhfjAlp2K75BolwpzPRgl1323bK', NULL, NULL, NULL, '2021-03-12 17:54:34', NULL),
-(29, 'adaaja12@gmail.com', '$2b$10$xcgMrVGf7eut4jOHZ4lhDep8Wlqkkolveusaj0llih1blL6Enx8Di', NULL, NULL, NULL, '2021-03-12 17:56:31', NULL),
+(29, 'adaaja12@gmail.com', '$2b$10$xcgMrVGf7eut4jOHZ4lhDep8Wlqkkolveusaj0llih1blL6Enx8Di', 'Ezra Gaming', '081098765432', 'null', '0000-00-00 00:00:00', '0000-00-00 00:00:00'),
 (30, 'Tes1@gmail.com', '$2b$10$sO0RabHc/lI0p7isz20Z6Oh/38iQYSuSjrQLcam9RaWhTfu/whwgG', 'Tes tes', '0895383636947', 'uploads/1615572041276-rn_image_picker_lib_temp_49e94bdc-0134-4ed2-98e4-0455f1865256.jpg', '0000-00-00 00:00:00', '0000-00-00 00:00:00'),
 (31, 'Tes2@gmail.com', '$2b$10$tnQdYB/WIVKHrivNwfFByOFB08wb25jWK/HJKylbtBQaIx3siYGb2', NULL, NULL, NULL, '2021-03-12 18:03:04', NULL),
 (32, 'Tes3@gmail.com', '$2b$10$/udDVJMSRfKbt1GtmlirCeSHRnQ41hyXUpkvYXqobWXZBniNc.md.', NULL, NULL, NULL, '2021-03-12 18:03:41', NULL),
 (33, 'Fix@gmail.com', '$2b$10$.EVg1KjqyK4suPNGNuug6.ECNqgyQ.4cPINn0UaiKIde3RXZzvv9W', NULL, NULL, 'uploads/1615666234520-rn_image_picker_lib_temp_86c023ae-a307-4385-8c65-f39ccdd9e98c.jpg', '2021-03-12 18:44:27', '2021-03-13 20:10:34'),
-(34, 'sapi@gmail.com', '$2b$10$fVVzzz19hMrI54gZ6LLMLue3q91PxsArxA.j3jykEVZxEKPIqMKZu', NULL, NULL, NULL, '2021-03-15 19:03:14', NULL);
+(34, 'sapi@gmail.com', '$2b$10$fVVzzz19hMrI54gZ6LLMLue3q91PxsArxA.j3jykEVZxEKPIqMKZu', 'Sapi dan Kuda 3', '081098765432', 'null', '2021-03-12 18:44:27', '2021-04-01 12:52:53'),
+(35, 'Sanusi@gmail.com', '$2b$10$j9xiXN8DCy4xEFgNWTM4F.3C3D5S8sstTDDwutLIJDstG2JjJJjRS', 'Sanusi', '087865233233', 'uploads/1617219842084-rn_image_picker_lib_temp_aa76034c-b3fc-4407-ba04-0b8240e92600.jpg', '0000-00-00 00:00:00', '0000-00-00 00:00:00'),
+(36, 'ayamayam@gmail.com', '$2b$10$gBIYWg71GOGhSplkjiI9hujwbpVHWEHVzv8S2H1y.6Dj4x4tn5y.W', NULL, NULL, NULL, '2021-04-05 08:09:41', NULL),
+(37, 'Seva@gmail.com', '$2b$10$ZSEK6JJQCMJOwJ1TmmUb..gx4HZCwPb3/YUNBoz.eQMmobyI9blim', NULL, NULL, NULL, '2021-04-09 13:38:47', NULL),
+(38, 'saddwqdsdfsfsdf@gmail.com', '$2b$10$cwkVgSpTnoN9cjdxVS/WyOW0wpJiSVoTV6FwwSziZ1gnwLOc5Cqsi', NULL, NULL, NULL, '2021-04-17 15:03:27', NULL);
 
 --
 -- Indexes for dumped tables
 --
 
 --
--- Indexes for table `casts`
+-- Indeks untuk tabel `casts`
 --
 ALTER TABLE `casts`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indexes for table `cinemas`
+-- Indeks untuk tabel `cinemas`
 --
 ALTER TABLE `cinemas`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indexes for table `cinemas_movies`
+-- Indeks untuk tabel `cinemas_movies`
 --
 ALTER TABLE `cinemas_movies`
   ADD PRIMARY KEY (`id`),
@@ -860,13 +934,13 @@ ALTER TABLE `cinemas_movies`
   ADD KEY `idMovies` (`idMovies`);
 
 --
--- Indexes for table `cities`
+-- Indeks untuk tabel `cities`
 --
 ALTER TABLE `cities`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indexes for table `cities_cinemas`
+-- Indeks untuk tabel `cities_cinemas`
 --
 ALTER TABLE `cities_cinemas`
   ADD PRIMARY KEY (`id`),
@@ -874,19 +948,19 @@ ALTER TABLE `cities_cinemas`
   ADD KEY `idCinemas` (`idCinemas`);
 
 --
--- Indexes for table `genres`
+-- Indeks untuk tabel `genres`
 --
 ALTER TABLE `genres`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indexes for table `movies`
+-- Indeks untuk tabel `movies`
 --
 ALTER TABLE `movies`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indexes for table `movie_casts`
+-- Indeks untuk tabel `movie_casts`
 --
 ALTER TABLE `movie_casts`
   ADD PRIMARY KEY (`id`),
@@ -894,7 +968,7 @@ ALTER TABLE `movie_casts`
   ADD KEY `idCast` (`idCast`);
 
 --
--- Indexes for table `movie_genres`
+-- Indeks untuk tabel `movie_genres`
 --
 ALTER TABLE `movie_genres`
   ADD PRIMARY KEY (`id`),
@@ -902,26 +976,26 @@ ALTER TABLE `movie_genres`
   ADD KEY `idGenre` (`idGenre`);
 
 --
--- Indexes for table `payment`
+-- Indeks untuk tabel `payment`
 --
 ALTER TABLE `payment`
   ADD PRIMARY KEY (`id`),
   ADD KEY `idUser` (`idUser`);
 
 --
--- Indexes for table `seat`
+-- Indeks untuk tabel `seat`
 --
 ALTER TABLE `seat`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indexes for table `show_times`
+-- Indeks untuk tabel `show_times`
 --
 ALTER TABLE `show_times`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indexes for table `show_times_cinemas`
+-- Indeks untuk tabel `show_times_cinemas`
 --
 ALTER TABLE `show_times_cinemas`
   ADD PRIMARY KEY (`id`),
@@ -929,7 +1003,7 @@ ALTER TABLE `show_times_cinemas`
   ADD KEY `idCinemas` (`idCinemas`);
 
 --
--- Indexes for table `ticket`
+-- Indeks untuk tabel `ticket`
 --
 ALTER TABLE `ticket`
   ADD PRIMARY KEY (`id`),
@@ -938,143 +1012,162 @@ ALTER TABLE `ticket`
   ADD KEY `idShowTimes` (`idShowTimes`);
 
 --
--- Indexes for table `users`
+-- Indeks untuk tabel `ticket_history`
+--
+ALTER TABLE `ticket_history`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `idUser` (`idUser`);
+
+--
+-- Indeks untuk tabel `users`
 --
 ALTER TABLE `users`
   ADD PRIMARY KEY (`id`);
 
 --
--- AUTO_INCREMENT for dumped tables
+-- AUTO_INCREMENT untuk tabel yang dibuang
 --
 
 --
--- AUTO_INCREMENT for table `casts`
+-- AUTO_INCREMENT untuk tabel `casts`
 --
 ALTER TABLE `casts`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=34;
 
 --
--- AUTO_INCREMENT for table `cinemas`
+-- AUTO_INCREMENT untuk tabel `cinemas`
 --
 ALTER TABLE `cinemas`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
--- AUTO_INCREMENT for table `cinemas_movies`
+-- AUTO_INCREMENT untuk tabel `cinemas_movies`
 --
 ALTER TABLE `cinemas_movies`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=71;
 
 --
--- AUTO_INCREMENT for table `cities`
+-- AUTO_INCREMENT untuk tabel `cities`
 --
 ALTER TABLE `cities`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
--- AUTO_INCREMENT for table `cities_cinemas`
+-- AUTO_INCREMENT untuk tabel `cities_cinemas`
 --
 ALTER TABLE `cities_cinemas`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
--- AUTO_INCREMENT for table `genres`
+-- AUTO_INCREMENT untuk tabel `genres`
 --
 ALTER TABLE `genres`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 
 --
--- AUTO_INCREMENT for table `movies`
+-- AUTO_INCREMENT untuk tabel `movies`
 --
 ALTER TABLE `movies`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=23;
 
 --
--- AUTO_INCREMENT for table `movie_casts`
+-- AUTO_INCREMENT untuk tabel `movie_casts`
 --
 ALTER TABLE `movie_casts`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=36;
 
 --
--- AUTO_INCREMENT for table `movie_genres`
+-- AUTO_INCREMENT untuk tabel `movie_genres`
 --
 ALTER TABLE `movie_genres`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=40;
 
 --
--- AUTO_INCREMENT for table `payment`
+-- AUTO_INCREMENT untuk tabel `payment`
 --
 ALTER TABLE `payment`
   MODIFY `id` int(80) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
--- AUTO_INCREMENT for table `seat`
+-- AUTO_INCREMENT untuk tabel `seat`
 --
 ALTER TABLE `seat`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=99;
 
 --
--- AUTO_INCREMENT for table `show_times`
+-- AUTO_INCREMENT untuk tabel `show_times`
 --
 ALTER TABLE `show_times`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
--- AUTO_INCREMENT for table `show_times_cinemas`
+-- AUTO_INCREMENT untuk tabel `show_times_cinemas`
 --
 ALTER TABLE `show_times_cinemas`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=51;
 
 --
--- AUTO_INCREMENT for table `ticket`
+-- AUTO_INCREMENT untuk tabel `ticket`
 --
 ALTER TABLE `ticket`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=110;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=151;
 
 --
--- AUTO_INCREMENT for table `users`
+-- AUTO_INCREMENT untuk tabel `ticket_history`
+--
+ALTER TABLE `ticket_history`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
+
+--
+-- AUTO_INCREMENT untuk tabel `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=35;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=39;
 
 --
--- Constraints for dumped tables
+-- Ketidakleluasaan untuk tabel pelimpahan (Dumped Tables)
 --
 
 --
--- Constraints for table `cinemas_movies`
+-- Ketidakleluasaan untuk tabel `cinemas_movies`
 --
 ALTER TABLE `cinemas_movies`
   ADD CONSTRAINT `cinemas_movies_ibfk_1` FOREIGN KEY (`idCinemas`) REFERENCES `cinemas` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
   ADD CONSTRAINT `cinemas_movies_ibfk_2` FOREIGN KEY (`idMovies`) REFERENCES `movies` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
--- Constraints for table `cities_cinemas`
+-- Ketidakleluasaan untuk tabel `cities_cinemas`
 --
 ALTER TABLE `cities_cinemas`
   ADD CONSTRAINT `cities_cinemas_ibfk_1` FOREIGN KEY (`idCinemas`) REFERENCES `cinemas` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
   ADD CONSTRAINT `cities_cinemas_ibfk_2` FOREIGN KEY (`idCities`) REFERENCES `cities` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
--- Constraints for table `movie_casts`
+-- Ketidakleluasaan untuk tabel `movie_casts`
 --
 ALTER TABLE `movie_casts`
   ADD CONSTRAINT `movie_casts_ibfk_1` FOREIGN KEY (`idMovie`) REFERENCES `movies` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
   ADD CONSTRAINT `movie_casts_ibfk_2` FOREIGN KEY (`idCast`) REFERENCES `casts` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
--- Constraints for table `movie_genres`
+-- Ketidakleluasaan untuk tabel `movie_genres`
 --
 ALTER TABLE `movie_genres`
   ADD CONSTRAINT `movie_genres_ibfk_1` FOREIGN KEY (`idGenre`) REFERENCES `genres` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
   ADD CONSTRAINT `movie_genres_ibfk_2` FOREIGN KEY (`idMovie`) REFERENCES `movies` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
--- Constraints for table `show_times_cinemas`
+-- Ketidakleluasaan untuk tabel `show_times_cinemas`
 --
 ALTER TABLE `show_times_cinemas`
   ADD CONSTRAINT `show_times_cinemas_ibfk_1` FOREIGN KEY (`idShowTimes`) REFERENCES `show_times` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
   ADD CONSTRAINT `show_times_cinemas_ibfk_2` FOREIGN KEY (`idCinemas`) REFERENCES `cinemas` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+--
+-- Ketidakleluasaan untuk tabel `ticket_history`
+--
+ALTER TABLE `ticket_history`
+  ADD CONSTRAINT `ticket_history_ibfk_1` FOREIGN KEY (`idUser`) REFERENCES `users` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

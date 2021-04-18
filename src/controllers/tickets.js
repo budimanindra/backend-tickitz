@@ -68,7 +68,7 @@ exports.getTicketHistory = async (req, res) => {
     if (results.length > 0) {
     return response(res, 200, true, 'Successfully to get ticket history', results)
     }
-    return response(res, 200, true, 'This user never buy a ticket')
+    return response(res, 200, true, 'This user never buy a ticket', [])
   } catch (err) {
     return response(res, 500, false, 'Server Error')
   }
